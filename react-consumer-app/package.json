@@ -2,15 +2,21 @@
   "name": "react-consumer-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://amiraelgarf.github.io/frontend-apps/react-consumer-app/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "prebuild": "npm run clean:stencil-assets && npm run copy:stencil-assets",
+    "clean:stencil-assets": "shx rm -rf public/assets/stencil-components/", 
+    "copy:stencil-assets": "shx mkdir -p public/assets/stencil-components/ && shx cp -r node_modules/@amiraelgarf/custom-frontend-library/dist/esm/* public/assets/stencil-components/"
   },
   "dependencies": {
-    "@amiraelgarf/custom-frontend-library": "^0.0.5",
+    "@amiraelgarf/custom-frontend-library": "^0.0.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -22,6 +28,7 @@
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "gh-pages": "^6.3.0",
     "globals": "^16.3.0",
     "vite": "^7.0.4"
   }

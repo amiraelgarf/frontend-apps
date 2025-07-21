@@ -1,0 +1,21 @@
+{
+  "name": "frontend-apps-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:react-app": "cd react-consumer-app && npm run build",
+    "build:angular-app": "echo 'Skipping Angular build for now' && exit 0",
+    "build:all-apps": "npm run build:react-app",
+
+    "deploy:clean": "rimraf dist-gh-pages",
+    "deploy:prepare": "npm run deploy:clean && shx mkdir -p dist-gh-pages/react-consumer-app",
+    "deploy:copy-react": "shx cp -r react-consumer-app/dist/* dist-gh-pages/react-consumer-app/",
+
+    "deploy-gh-pages": "npm run build:all-apps && npm run deploy:prepare && npm run deploy:copy-react && gh-pages -d dist-gh-pages"  
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1",
+    "rimraf": "^5.0.0",
+    "shx": "^0.3.4"
+  }
+}

@@ -11,5 +11,8 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-defineCustomElements();
+const stencilResourcesUrl = './assets/stencil-components/';
 
+defineCustomElements(window, {
+  resourcesUrl: stencilResourcesUrl
+});
