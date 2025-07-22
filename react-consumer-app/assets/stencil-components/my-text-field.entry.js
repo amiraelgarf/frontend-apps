@@ -22,7 +22,7 @@ const MyTextField = class {
             'medium': this.variantSize === 'medium',
             'large': this.variantSize === 'large',
         };
-        return (h("div", { key: '0680b07f11882231e98ede125821dd7b84f4b304' }, h("form", { key: '8c53170b1c97412648a6f68a6bb1176cb52d06a0' }, h("label", { key: '04e0e4f6aff3621e6f0eca7ea582dc6940ca99c5', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: '32bddfba7b78cef6a33b96871fc3e18bf3e7d708', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable }))));
+        return (h("div", { key: 'd94510761e9acafb30f0bc71ca2c406bb2fa3834' }, h("form", { key: '984360a2bd16063f2cf0ddaae1216fa7980c6e09' }, h("label", { key: 'e427a52159861d9c7db8a88db1c8ded4d331b3aa', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: 'ed951154ee482ed472e7a58201ea7662989e0304', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable }))));
     }
 };
 MyTextField.style = myTextFieldCss;

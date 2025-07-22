@@ -20,7 +20,7 @@ const MyDropdownMenu = class {
             'large': this.variantSize === 'large',
         };
         const optionsLength = this.options.length;
-        return (h("select", { key: 'f0d86a3e7ae5751220798b96ec6951c341951812', class: classOption }, Array.from({ length: optionsLength }).map((_, i) => (h("option", { value: this.valeOfEachOption[i] }, this.options[i])))));
+        return (h("select", { key: 'f1c997f17fbac5157328b4c48b3d3909acffe962', class: classOption }, Array.from({ length: optionsLength }).map((_, i) => (h("option", { value: this.valeOfEachOption[i] }, this.options[i])))));
     }
 };
 MyDropdownMenu.style = myDropdownMenuCss;

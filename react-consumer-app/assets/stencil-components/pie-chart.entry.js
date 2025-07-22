@@ -615,7 +615,7 @@ const PieChart = class {
             .text((d) => d.data.label);
     }
     render() {
-        return (h(h.Fragment, null, h("svg", { key: 'e0a2b5fbe24f8ae8ffc3b8ba3f5f011b5e59e8ce', id: "pie-chart" }), h("div", { key: '08db5340cd00703375cda5c7aa1daf254fc0fdcc', class: "tooltip", style: { position: 'absolute' } })));
+        return (h(h.Fragment, null, h("svg", { key: '5f1ec1347dfdd6a7cdc7ce9eecc3114aa0f46c0d', id: "pie-chart" }), h("div", { key: '4ab120998189ac7cbde9cbc7ba043b803dca0e6f', class: "tooltip", style: { position: 'absolute' } })));
     }
 };
 PieChart.style = pieChartCss;

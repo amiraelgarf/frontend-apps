@@ -52,7 +52,7 @@ const BubbleChart = class {
     myTitle = 'Country Population vs. Land Area Percentage';
     xTitle = 'Country (Hover for Name)';
     yTitle = 'Population';
-    myWidth = 100;
+    myWidth = 800;
     charWidth;
     bubbleData = DEFAULT_BUBBLE_DATA;
     seriesData;
@@ -65,7 +65,7 @@ const BubbleChart = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.ProcessBubbleData(this.bubbleData || DEFAULT_BUBBLE_DATA);
-        this.charWidth = `${this.myWidth}%`;
+        this.charWidth = `${this.myWidth}px`;
     }
     ProcessBubbleData(TheData) {
         this.seriesData = [{
@@ -91,7 +91,7 @@ const BubbleChart = class {
         this.drawOrUpdateChart();
     }
     GetOption() {
-        const formattedYLabel = this.countyName;
+        const formattedXLabel = this.countyName;
         return {
             series: this.seriesData,
             chart: {
@@ -116,8 +116,8 @@ const BubbleChart = class {
                     },
                     beforeResetZoom: () => {
                         this.apexChartInstance.updateOptions({
-                            xaxis: { min: this.originalXMin, max: this.originalXMax, tickAmount: undefined },
-                            yaxis: { min: this.originalYMin, max: this.originalYMax, tickAmount: undefined },
+                            xaxis: { min: this.originalXMin, max: this.originalXMax, tickAmount: null },
+                            yaxis: { min: this.originalYMin, max: this.originalYMax, tickAmount: null },
                         }, true, true);
                     }
                 },
@@ -139,7 +139,7 @@ const BubbleChart = class {
                 labels: {
                     formatter: (value) => {
                         const index = parseInt(value, 10);
-                        return formattedYLabel[index] || 'NoCountry';
+                        return formattedXLabel[index] || 'NoCountry';
                     },
                     rotate: -45,
                     hideOverlappingLabels: true,
@@ -193,7 +193,7 @@ const BubbleChart = class {
         }
     }
     render() {
-        return (h("div", { key: '6732567bd4e33290853b3dff8e7764b16cca6334', id: "chartBubble" }));
+        return (h("div", { key: 'e559c71b8b2e9023d7ce8346c75af6ce6a946cc5', id: "chartBubble" }));
     }
     static get watchers() { return {
         "bubbleData": ["bubbleDataChanged"],

@@ -40,7 +40,7 @@ const LineChart = class {
         this.chart?.destroy();
     }
     render() {
-        return h("div", { key: '06d4012f81b9725347e7a2843d15d35683e64b35', id: "chart" });
+        return h("div", { key: 'cfccb76d7a967462b14266bea0930a395f3fb412', id: "chart" });
     }
 };
 LineChart.style = lineChartCss;

@@ -67,7 +67,7 @@ const RightClickMenu = class {
             } }, item.children.map(child => this.renderTheMenu(child))))));
     }
     render() {
-        return (h("div", { key: '693291faa28965738eec7378c14b0c8ea112967d', style: { height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' } }, this.menuVisible && (h("ul", { key: '15d26ff5ebad7e76ac67d6e539ffb91880364d12', ref: (el) => this.menuElementRef = el, class: "context-menu", style: {
+        return (h("div", { key: 'f35980cacb2aa7f6d321a5e75be08605e7103b60', style: { height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' } }, h("slot", { key: '0551ba213859f75bc5eae3cdef6c4465e560a66a' }), this.menuVisible && (h("ul", { key: '308c126150a9734fa2b61b12c8053996ab13c050', ref: (el) => this.menuElementRef = el, class: "context-menu", style: {
                 top: `${this.adjustedPosition.y}px`,
                 left: `${this.adjustedPosition.x}px`
             } }, this.theItems.map(i => this.renderTheMenu(i))))));

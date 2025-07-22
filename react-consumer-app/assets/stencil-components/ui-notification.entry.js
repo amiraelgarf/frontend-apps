@@ -11,7 +11,7 @@ const UiNotification = class {
     header = '';
     content = '';
     render() {
-        return (h(Host, { key: '369c6801a96c9ab056facb9a63c2a4e9abf5a569', class: `notification ${this.placement} ${this.type}` }, h("div", { key: '646f5a197bff3b76f6f639b51f85cadf03840077', class: "notification-box" }, this.header && h("div", { key: '4042e438eefcdbba106b21f800345dfa8010ef75', class: "header" }, this.header), h("div", { key: 'f18f5422495ab1d530105f9778f31f6c859b6d6b', class: "content" }, this.content))));
+        return (h(Host, { key: 'f367d02b8bc4a86b4efb4ff42b27da13e50b30fb', class: `notification ${this.placement} ${this.type}` }, h("div", { key: 'ef837d9c9f0acee10aad854803b6d9e8b085df72', class: "notification-box" }, this.header && h("div", { key: 'fb41b10cb3bad0a32b5351de6dd171c6cbd6271b', class: "header" }, this.header), h("div", { key: 'be2f3b441a94935e6fff639e68040cff5202532e', class: "content" }, this.content))));
     }
 };
 UiNotification.style = uiNotificationCss;

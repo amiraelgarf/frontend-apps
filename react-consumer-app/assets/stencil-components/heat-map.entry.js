@@ -53,7 +53,7 @@ const HeatmapChart = class {
         chart.render();
     }
     render() {
-        return h("div", { key: '9c34c6a19c766e62ed77f6a99f94308b34fa62e8', id: "heatmap", class: "chart-container" });
+        return h("div", { key: 'df152a34229c996ddf902d74fce31d199368a314', id: "heatmap", class: "chart-container" });
     }
 };
 HeatmapChart.style = heatMapCss;

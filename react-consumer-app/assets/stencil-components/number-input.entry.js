@@ -16,7 +16,7 @@ const NumberInput = class {
         this.valueChange?.emit(Number(input.value));
     };
     render() {
-        return (h("input", { key: 'fe5ef0f911bdb9f5cd02a3a6ea989f850853e562', type: "number", value: this.value, min: this.min, max: this.max, onInput: this.handleInput }));
+        return (h("input", { key: '575c4237f9e5221b045729fff200d72ef437793d', type: "number", value: this.value, min: this.min, max: this.max, onInput: this.handleInput }));
     }
 };
 NumberInput.style = numberInputCss;

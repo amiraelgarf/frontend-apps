@@ -25,7 +25,7 @@ const CheckboxInput = class {
         this.myChange?.emit({ value: this.value, checked: this.checked });
     };
     render() {
-        return (h("label", { key: 'ccd6c2e3e5ee64f6f3cb175a8e5ee3aed474d8a0', class: { 'checkbox-wrapper': true, 'checkbox-wrapper--disabled': this.disabled } }, h("input", { key: 'b426a0524fdfd87c9f46cc20b1ccd4342a091009', type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, onChange: this.handleChange, class: "checkbox-input" }), h("span", { key: '1f5724ce34ad9406f4a5150cd34d2111afdd9479', class: "checkbox-custom" }, h("svg", { key: 'e1b4d16a4d2e1a757e86863e600a7aa8f68909df', class: "checkbox-checkmark", viewBox: "0 0 24 24" }, h("polyline", { key: 'ada4b6aee32b51942ba22e087a982e6da06063e1', points: "20 6 9 17 4 12" }))), h("span", { key: '09f7e911d72e25ee7254d72033eea93b51072fb0', class: "checkbox-label" }, this.label)));
+        return (h("label", { key: '054fb0ea15cc2209a2bf0c8ec3844bcc35c3f26a', class: { 'checkbox-wrapper': true, 'checkbox-wrapper--disabled': this.disabled } }, h("input", { key: '4a71bec569e1b841b7f95706278fc951659b887b', type: "checkbox", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, onChange: this.handleChange, class: "checkbox-input" }), h("span", { key: '5f84a36738b306d821101b79657e7e86232e0d15', class: "checkbox-custom" }, h("svg", { key: '38c749a7f170fa52ef28a6f088846d01cff2ce87', class: "checkbox-checkmark", viewBox: "0 0 24 24" }, h("polyline", { key: '7998751c8b46fe1e494ff7a61d633ce1e9b18aca', points: "20 6 9 17 4 12" }))), h("span", { key: '4c263595911eecd79b6a808b36580d9777664da7', class: "checkbox-label" }, this.label)));
     }
 };
 CheckboxInput.style = checkboxInputCss;
@@ -46470,7 +46470,7 @@ const CustomGrid = class {
         }
     }
     render() {
-        return (h("div", { key: '9032e2aec90d068830a1698f6aa245b11da476bf', class: {
+        return (h("div", { key: '7031e9106bc20dc918797dda819bf1a7795b29b0', class: {
                 'ag-grid-wrapper': true,
                 'ag-theme-alpine': true,
                 'ag-grid-no-striped': !this.striped,
@@ -46681,7 +46681,7 @@ const D3BarChart = class {
             .text(d => d.value);
     };
     render() {
-        return (h("div", { key: '6d8f5981c5a46445276c42a8a9e510864cfc57ee', class: "chart-container" }, h("svg", { key: '3295f8cbb30e7cdb927353a7677087572310bd65' })));
+        return (h("div", { key: '643566190be21d53d62c4b14f106ff702cf894ab', class: "chart-container" }, h("svg", { key: 'b48b949bc84c29f376ef3aa3ae73a1ea6a55c4cd' })));
     }
     static get watchers() { return {
         "chartData": ["onDataChange"]
@@ -46712,12 +46712,12 @@ const DateInput = class {
         this.myChange?.emit(this.value);
     };
     render() {
-        return (h("div", { key: 'aa04ff7d407fd84791c431c0a3a19c1f9987456f', class: { 'date-wrapper': true, 'date-wrapper--disabled': this.disabled } }, h("label", { key: 'baf93028fdae0cdc0f4513b88b5a1eac00cf5351', htmlFor: this.name, class: "date-label" }, this.label), h("input", { key: '922b5d7975ee0374820aa89a0eaf5ed3e377057c', type: "date", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, disabled: this.disabled, onChange: this.handleChange, class: "date-field", placeholder: "YYYY-MM-DD" })));
+        return (h("div", { key: '8ea9acd9912e9b5742572fa2c4b883720511fe4e', class: { 'date-wrapper': true, 'date-wrapper--disabled': this.disabled } }, h("label", { key: '2cf904724d434384d3c42b510afff521ad8c24a7', htmlFor: this.name, class: "date-label" }, this.label), h("input", { key: 'f645c262a99b1288a24ae7deca99743a8529b5c4', type: "date", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, disabled: this.disabled, onChange: this.handleChange, class: "date-field", placeholder: "YYYY-MM-DD" })));
     }
 };
 DateInput.style = dateInputCss;
 
-const multiAxisChartCss = ":host {\r\n  display: block;\r\n  font-family: 'Roboto', sans-serif;\r\n  @import url('https://fonts.googleapis.com/css?family=Roboto');\r\n}\r\n\r\n.chart-wrapper {\r\n  max-width: 100%;\r\n  margin: 20px auto;\r\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\r\n  border-radius: 8px;\r\n  overflow: hidden;\r\n  background-color: #fff;\r\n  padding: 10px;\r\n}\r\n\r\n.chart-wrapper > div {\r\n  width: 100%;\r\n  min-height: 300px; \r\n}\r\n";
+const multiAxisChartCss = ":host {\n  display: block;\n  font-family: 'Roboto', sans-serif;\n  @import url('https://fonts.googleapis.com/css?family=Roboto');\n}\n\n.chart-wrapper {\n  max-width: 100%;\n  margin: 20px auto;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  border-radius: 8px;\n  overflow: hidden;\n  background-color: #fff;\n  padding: 10px;\n}\n\n.chart-wrapper > div {\n  width: 100%;\n  min-height: 300px; \n}\n";
 
 const MultiAxisChart = class {
     constructor(hostRef) {
@@ -46841,12 +46841,12 @@ const MultiAxisChart = class {
         }
     }
     render() {
-        return (h("div", { key: 'ae667fa43ee42e16b1d05a351dd3e5cdbe747078', class: "chart-wrapper" }, h("div", { key: '6cb9f525259d9421bae28aefaebfaa332b7fe312', ref: (el) => (this.chartContainer = el) })));
+        return (h("div", { key: '87c68460c6f6d668920024eb2baeed3b0d1853b8', class: "chart-wrapper" }, h("div", { key: 'b273366fd232350a26af153329faf603ba72f2ee', ref: (el) => (this.chartContainer = el) })));
     }
 };
 MultiAxisChart.style = multiAxisChartCss;
 
-const myButtonCss = ":host{display:inline-block}.my-button{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\r\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\r\n    sans-serif;border:none;border-radius:6px;cursor:pointer;font-weight:500;line-height:1;transition:all 0.2s ease-in-out;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;user-select:none;outline:none}.my-button:focus-visible{outline:2px solid #005F87;outline-offset:2px}.my-button--small{padding:8px 12px;font-size:14px;min-height:32px}.my-button--medium{padding:12px 16px;font-size:16px;min-height:40px}.my-button--large{padding:16px 24px;font-size:18px;min-height:48px}.my-button--primary{background-color:#005F87;color:white}.my-button--primary:hover:not(.my-button--disabled){background-color:#DAECF0}.my-button--primary:active:not(.my-button--disabled){background-color:#005F87}.my-button--secondary{background-color:#6c757d;color:white}.my-button--secondary:hover:not(.my-button--disabled){background-color:#5a6268}.my-button--secondary:active:not(.my-button--disabled){background-color:#495057}.my-button--outline{background-color:transparent;color:#005F87;border:2px solid #005F87}.my-button--outline:hover:not(.my-button--disabled){background-color:#005F87;color:white}.my-button--outline:active:not(.my-button--disabled){background-color:#0052a3;border-color:#0052a3}.my-button--disabled{opacity:0.6;cursor:not-allowed}.my-button--disabled:hover,.my-button--disabled:active{transform:none}";
+const myButtonCss = ":host{display:inline-block}.my-button{font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;border:none;border-radius:6px;cursor:pointer;font-weight:500;line-height:1;transition:all 0.2s ease-in-out;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;user-select:none;outline:none}.my-button:focus-visible{outline:2px solid #005F87;outline-offset:2px}.my-button--small{padding:8px 12px;font-size:14px;min-height:32px}.my-button--medium{padding:12px 16px;font-size:16px;min-height:40px}.my-button--large{padding:16px 24px;font-size:18px;min-height:48px}.my-button--primary{background-color:#005F87;color:white}.my-button--primary:hover:not(.my-button--disabled){background-color:#DAECF0}.my-button--primary:active:not(.my-button--disabled){background-color:#005F87}.my-button--secondary{background-color:#6c757d;color:white}.my-button--secondary:hover:not(.my-button--disabled){background-color:#5a6268}.my-button--secondary:active:not(.my-button--disabled){background-color:#495057}.my-button--outline{background-color:transparent;color:#005F87;border:2px solid #005F87}.my-button--outline:hover:not(.my-button--disabled){background-color:#005F87;color:white}.my-button--outline:active:not(.my-button--disabled){background-color:#0052a3;border-color:#0052a3}.my-button--disabled{opacity:0.6;cursor:not-allowed}.my-button--disabled:hover,.my-button--disabled:active{transform:none}";
 
 const MyButton = class {
     constructor(hostRef) {
@@ -46870,7 +46870,7 @@ const MyButton = class {
             [`my-button--${this.size}`]: true,
             'my-button--disabled': this.disabled,
         };
-        return (h("button", { key: 'd983e232e8f57aac23c2fc237ebb93cbb7ca374c', class: classes, disabled: this.disabled, onClick: this.handleClick, type: "button" }, this.label));
+        return (h("button", { key: '6e34b3087f52e09ba4fe150996b6d16651af94a8', class: classes, disabled: this.disabled, onClick: this.handleClick, type: "button" }, this.label));
     }
 };
 MyButton.style = myButtonCss;
@@ -46897,7 +46897,7 @@ const RadioButton = class {
         this.myChange?.emit({ value: this.value, checked: this.checked });
     };
     render() {
-        return (h("label", { key: 'b952bc415bca608c091647c94c2b3702ef7aae42', class: { 'radio-button-wrapper': true, 'radio-button-wrapper--disabled': this.disabled } }, h("input", { key: '51878a2909620bd899a403f3fe028df1b918e00b', type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, onChange: this.handleChange, class: "radio-button-input" }), h("span", { key: '283afb1070d2b9893cf74644b0d9664698f7d798', class: "radio-button-custom" }), h("span", { key: '55d437a4ac235bc5f0d7b7b08e256b2cc85950cd', class: "radio-button-label" }, this.label)));
+        return (h("label", { key: '8deee5a1176afc849ffd9824ccfd5592fe5a1ca4', class: { 'radio-button-wrapper': true, 'radio-button-wrapper--disabled': this.disabled } }, h("input", { key: '4dd5729fa66ac1fe93b3deb4ddeadd73f2e2abce', type: "radio", name: this.name, value: this.value, checked: this.checked, disabled: this.disabled, onChange: this.handleChange, class: "radio-button-input" }), h("span", { key: '219745410608a735bc0076c844e21fb65ddb38be', class: "radio-button-custom" }), h("span", { key: '6f846dc1c6a515bc357af8bf5321de0e3af5a6e7', class: "radio-button-label" }, this.label)));
     }
 };
 RadioButton.style = radioButtonCss;
@@ -46928,7 +46928,7 @@ const RangeInput = class {
     render() {
         const range = this.max - this.min;
         const fillPercentage = range > 0 ? ((this.value - this.min) / range) * 100 : 0;
-        return (h("div", { key: '3c18df2a3b0b8deb6c197dcf104669f5c39fb257', class: { 'range-wrapper': true, 'range-wrapper--disabled': this.disabled }, style: { '--fill-percentage': `${fillPercentage}%` } }, h("label", { key: '0167ada083de278b18b1c862d30597546a1b4ec3', htmlFor: this.name, class: "range-label" }, this.label, h("span", { key: '62054d1b39027e161fff7122a3ade0d512a2d2f0', class: "range-value" }, this.value)), h("input", { key: '778585b244b94edaadbdf472d849ec444608b198', type: "range", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, step: this.step, disabled: this.disabled, onChange: this.handleChange, class: "range-field" })));
+        return (h("div", { key: '726e44ded99d81d44d686297930b518247f94f44', class: { 'range-wrapper': true, 'range-wrapper--disabled': this.disabled }, style: { '--fill-percentage': `${fillPercentage}%` } }, h("label", { key: '0b20229ae3f026ccc44b4f60277efdd1c9fcaf70', htmlFor: this.name, class: "range-label" }, this.label, h("span", { key: '4ef3152d7d6ca3a85d33a2fbd735d8888ccfeb45', class: "range-value" }, this.value)), h("input", { key: '7a2efa0dc246e4f934dd91f8e72318d108ca8561', type: "range", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, step: this.step, disabled: this.disabled, onChange: this.handleChange, class: "range-field" })));
     }
 };
 RangeInput.style = rangeInputCss;
@@ -46957,7 +46957,7 @@ const TimeInput = class {
         this.myChange?.emit(this.value);
     };
     render() {
-        return (h("div", { key: '772d5b3e771282d11f758397ff8e844bf3a82caf', class: { 'time-wrapper': true, 'time-wrapper--disabled': this.disabled } }, h("label", { key: '2dcbf41c28709bc5416ab08b8e4069919c45dec9', htmlFor: this.name, class: "time-label" }, this.label), h("input", { key: '02ca065ac5a6d10b6d6b0d6c62ac95b6ef3c09b2', type: "time", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, step: this.step, disabled: this.disabled, onChange: this.handleChange, class: "time-field", placeholder: "HH:MM" })));
+        return (h("div", { key: '77560f767c8221ce4dbdc36462e14fa82648a79d', class: { 'time-wrapper': true, 'time-wrapper--disabled': this.disabled } }, h("label", { key: '14c27599ffa63a1bcbf8af39254776bb36f6854f', htmlFor: this.name, class: "time-label" }, this.label), h("input", { key: '0c14c5f1993c8d1193cd61604775d44d4549c4dc', type: "time", id: this.name, name: this.name, value: this.value, min: this.min, max: this.max, step: this.step, disabled: this.disabled, onChange: this.handleChange, class: "time-field", placeholder: "HH:MM" })));
     }
 };
 TimeInput.style = timeInputCss;

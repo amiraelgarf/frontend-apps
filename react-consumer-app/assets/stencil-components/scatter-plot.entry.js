@@ -185,7 +185,7 @@ const ScatterPlot = class {
         this.drawChart();
     }
     render() {
-        return (h("div", { key: 'd0e8c6050d1edda8b83c7b4653e10fffcdc5a433', id: "scatter-plot-ID" }));
+        return (h("div", { key: 'da4e893d1413f22433205b60ba12014fffca1d3c', id: "scatter-plot-ID" }));
     }
     static get watchers() { return {
         "data": ["dataWatcher"]

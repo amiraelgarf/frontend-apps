@@ -332,7 +332,7 @@ const HistogramChart = class {
         this.renderHistogram();
     }
     render() {
-        return (h("div", { key: 'cc839c4bb2873fae2b2da47a9afe8e753348781c', class: "histogramChart" }));
+        return (h("div", { key: 'a11b78415e46334635393b7fff9fbb37e3cebfb9', class: "histogramChart" }));
     }
     static get watchers() { return {
         "myWidth": ["OnPropChange"],

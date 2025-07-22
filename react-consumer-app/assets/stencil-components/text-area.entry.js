@@ -23,7 +23,7 @@ const TextArea = class {
         this.valueChange.emit(input.value);
     };
     render() {
-        return (h("textarea", { key: 'f5474fc98ddefb9a1ef39afebf9bdbdd2cc15b2a', onInput: this.handleInput, ref: (el) => {
+        return (h("textarea", { key: '984dc27da3ba179844a840739874930a1da5c1a9', onInput: this.handleInput, ref: (el) => {
                 if (el) {
                     el.placeholder = this.placeholder;
                     el.value = this.internalValue;

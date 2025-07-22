@@ -8,7 +8,7 @@ const UiCards = class {
     }
     cardTitle = "Card";
     render() {
-        return (h(Host, { key: 'a25925e3092733c276c366875802163184f79a2b' }, h("div", { key: '0c12082e0ee5034fdf91db520d2a1861d37c2481', class: "card" }, this.cardTitle && (h("div", { key: '9c86170ab004ea0fd16e6a89453a85411838c925', class: "card-header" }, h("h3", { key: 'ecc6bf681ccba03418ffbb45d7d6bd249636aa48' }, this.cardTitle))), h("div", { key: 'fc8870eb250ce71353b1af27121a80385a318867', class: "card-content" }, h("slot", { key: '1c6c6adb5809a9c83c154591fa74c45bdcdf471e' })))));
+        return (h(Host, { key: '19695d72f8e9f009ee6a2aa0a795b062e7eda15c' }, h("div", { key: '0d58160b4a7f4aa1c15759f75f72d9dcb41e740e', class: "card" }, this.cardTitle && (h("div", { key: 'd9bc0b44b28278cfcdb6e88d3bb8646f9165f825', class: "card-header" }, h("h3", { key: '9e2fe46b63c926b7e7ba838e2722fe153f6b816b' }, this.cardTitle))), h("div", { key: '3e4152bfa3a99f484a44f577ad742925ad6e6c1f', class: "card-content" }, h("slot", { key: '267c75a7b965c30bc2944fb35cd5fe645735055a' })))));
     }
 };
 UiCards.style = uiCardsCss;
