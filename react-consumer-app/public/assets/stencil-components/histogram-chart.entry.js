@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-DKeYANm1.js';
+import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
 import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
 import { t as tickIncrement, c as ticks, d as bisectRight, l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
 
@@ -214,7 +214,7 @@ const HistogramChart = class {
         const height = this.myHight - margin.top - margin.bottom;
         const container = this.el.shadowRoot?.querySelector('.histogramChart');
         if (container) {
-            container.innerHTML = ''; //remove the repreted SVG
+            container.innerHTML = '';
         }
         const svg = select(this.el.shadowRoot?.querySelector('.histogramChart'))
             .append('svg')
@@ -229,13 +229,6 @@ const HistogramChart = class {
             .style("text-anchor", "middle")
             .style("font-size", "20px")
             .text(this.nameOfChart);
-        // this.infoTextSelection = svg.append("text")
-        //     .attr("class", "info-text")
-        //     .attr("x", width / 2)
-        //     .attr("y", -40)
-        //     .style("text-anchor", "middle")
-        //     .style("font-size", "14px")
-        //     .text("");
         const allGrade = [...this.data.map(d => d.semester1), ...this.data.map(d => d.semester2)]
             .filter((grade) => grade !== undefined && grade !== null);
         const x = linear()
@@ -244,67 +237,33 @@ const HistogramChart = class {
             .nice();
         const bins = bin()
             .value(d => d)
-            .domain(x.domain()) // Ensure domain is [min, max] (and the return from xScale is number[])
-            .thresholds(x.ticks(this.binCount)); // Divides the domain into `binCount` (e.g., 10) equal intervals
+            .domain(x.domain())
+            .thresholds(x.ticks(this.binCount));
         const semester1Bins = bins(this.data.map(d => d.semester1));
         const semester2Bins = bins(this.data.map(d => d.semester2));
-        // Y scale (frequency)
         const y = linear()
             .domain([0, max([...semester1Bins, ...semester2Bins], d => d.length) || 0])
             .range([height, 0])
             .nice();
-        // Color scale
         const color = ordinal()
             .domain(["semester1", "semester2"])
             .range(["#1f77b4", "#ff7f0e"]);
-        // // Function to update bar opacities based on active semester
-        // const updateOpacities = () => {
-        //     svg.selectAll<SVGRectElement, HistogramBin>(".bar-s1")
-        //         .transition().duration(200)
-        //         .attr("opacity", this.activeSemester === 'semester2' ? 0.2 : 
-        //             this.activeSemester === 'semester1' ? 1.0 : 0.7);
-        //     svg.selectAll<SVGRectElement, HistogramBin>(".bar-s2")
-        //         .transition().duration(200)
-        //         .attr("opacity", this.activeSemester === 'semester1' ? 0.2 : 
-        //             this.activeSemester === 'semester2' ? 1.0 : 0.7);
-        // };
-        //  // Click handler for bars
-        // const handleBarClick = (event: Event, semester: 'semester1' | 'semester2') => {
-        // event.stopPropagation();
-        // if (this.activeSemester === semester) {
-        //     this.activeSemester = null;
-        //     if (this.infoTextSelection) {
-        //         this.infoTextSelection.text("");
-        //     }
-        // } else {
-        //     this.activeSemester = semester;
-        //     if (this.infoTextSelection) {
-        //         this.infoTextSelection.text(`Showing: ${semester === 'semester1' ? 'Semester 1' : 'Semester 2'}`);
-        //     }
-        //     }
-        //     updateOpacities(); // Apply opacity changes
-        // };
-        // Draw semester 1 histogram
         svg.selectAll(".semester1")
             .data(semester1Bins)
             .enter().append("rect")
             .attr("class", "bar-s1")
-            .attr("x", d => x(d.x0 ?? 0) + 1) // X position of the bar (start of the bin + small offset)
-            .attr("y", d => y(d.length ?? 0)) // Y position of the bar (top of the bar based on frequency)
+            .attr("x", d => x(d.x0 ?? 0) + 1)
+            .attr("y", d => y(d.length ?? 0))
             .attr("width", d => {
             const x0 = d.x0 ?? 0;
             const x1 = d.x1 ?? x0 + 1;
-            return Math.max(0, x(x1) - x(x0) - 1); // Calculate bar width
+            return Math.max(0, x(x1) - x(x0) - 1);
         })
-            .attr("height", d => height - y(d.length ?? 0)) // Height of the bar
+            .attr("height", d => height - y(d.length ?? 0))
             .attr("fill", () => color("semester1"))
-            .attr("rx", 5) // Rounded corners (horizontal)
-            .attr("ry", 5) // Rounded corners (vertical)
-            .attr("opacity", 0.7); // Make bars slightly transparent for overlay effect
-        // .on("click", function(event) { 
-        // handleBarClick(event, 'semester1');
-        // });
-        // Draw semester 2 histogram (overlaid)
+            .attr("rx", 5)
+            .attr("ry", 5)
+            .attr("opacity", 0.7);
         svg.selectAll(".semester2")
             .data(semester2Bins)
             .enter().append("rect")
@@ -318,24 +277,9 @@ const HistogramChart = class {
         })
             .attr("height", d => height - y(d.length ?? 0))
             .attr("fill", () => color("semester2"))
-            .attr("rx", 5) // Rounded corners (horizontal)
-            .attr("ry", 5) // Rounded corners (vertical)
-            .attr("opacity", 0.7); // Make bars slightly transparent for overlay effect
-        // .on("click", function(event) { 
-        //  handleBarClick(event, 'semester2'); 
-        // });
-        // svg.append("rect")
-        // .attr("width", width)
-        // .attr("height", height)
-        // .attr("fill", "transparent")
-        // .on("click", () => {
-        //     this.activeSemester = null;
-        //     if (this.infoTextSelection) {
-        //         this.infoTextSelection.text("");
-        //     }
-        //     updateOpacities();
-        // });
-        // Add X axis
+            .attr("rx", 5)
+            .attr("ry", 5)
+            .attr("opacity", 0.7);
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
             .call(axisBottom(x))
@@ -344,7 +288,6 @@ const HistogramChart = class {
             .attr("y", 35)
             .attr("fill", "#000")
             .text("Grade Ranges");
-        // Add Y axis
         svg.append("g")
             .call(axisLeft(y))
             .append("text")
@@ -353,7 +296,6 @@ const HistogramChart = class {
             .attr("x", -height / 2)
             .attr("fill", "#000")
             .text("Number of Students");
-        // Add legend
         const legend = svg.append("g")
             .attr("transform", `translate(${width - 100}, 20)`);
         legend.append("rect")
@@ -390,7 +332,7 @@ const HistogramChart = class {
         this.renderHistogram();
     }
     render() {
-        return (h("div", { key: 'b6717c1914f836f2df04ad7447d4bd3c8a40169d', class: "histogramChart" }));
+        return (h("div", { key: 'cc839c4bb2873fae2b2da47a9afe8e753348781c', class: "histogramChart" }));
     }
     static get watchers() { return {
         "myWidth": ["OnPropChange"],

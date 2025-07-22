@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-DKeYANm1.js';
+import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
 import { u as us } from './apexcharts.esm-DWm2rkNx.js';
 
 const lineChartCss = ":host{display:block;width:100%;max-width:600px;margin:auto}#chart{width:100%;height:100%}#chart{border:1px solid #e0e0e0;border-radius:8px;padding:8px;background-color:white;box-shadow:0 2px 6px rgba(0, 0, 0, 0.05)}";
@@ -23,6 +23,11 @@ const LineChart = class {
                 }],
             xaxis: {
                 categories: this.categories
+            },
+            yaxis: {
+                labels: {
+                    show: true
+                }
             }
         };
         const target = this.el.shadowRoot?.querySelector('#chart');
@@ -35,7 +40,7 @@ const LineChart = class {
         this.chart?.destroy();
     }
     render() {
-        return h("div", { key: '3942658d7bd2b82e9b06c4bb5635bbe609ca7dff', id: "chart" });
+        return h("div", { key: '06d4012f81b9725347e7a2843d15d35683e64b35', id: "chart" });
     }
 };
 LineChart.style = lineChartCss;

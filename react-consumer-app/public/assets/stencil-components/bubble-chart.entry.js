@@ -1,4 +1,4 @@
-import { g as getElement, r as registerInstance, h } from './index-DKeYANm1.js';
+import { g as getElement, r as registerInstance, h } from './index-crweC_lX.js';
 import { u as us } from './apexcharts.esm-DWm2rkNx.js';
 
 const bubbleChartCss = "";
@@ -58,7 +58,6 @@ const BubbleChart = class {
     seriesData;
     countyName;
     apexChartInstance;
-    //For the zoom effect
     originalXMin = 0;
     originalXMax = 0;
     originalYMin = 0;
@@ -78,12 +77,11 @@ const BubbleChart = class {
                 ]),
             }];
         this.countyName = TheData.map(item => item.country);
-        // Calculate and store original axis ranges
-        this.originalXMin = -0.5; // Small padding
-        this.originalXMax = this.countyName.length - 0.5; // Small padding
+        this.originalXMin = -0.5;
+        this.originalXMax = this.countyName.length - 0.5;
         const yValues = TheData.map(d => d.population);
-        this.originalYMin = Math.min(...yValues) * 0.9; // 90% of min value
-        this.originalYMax = Math.max(...yValues) * 1.1; // 110% of max value
+        this.originalYMin = Math.min(...yValues) * 0.9;
+        this.originalYMax = Math.max(...yValues) * 1.1;
     }
     bubbleDataChanged(newValue) {
         this.ProcessBubbleData(newValue || DEFAULT_BUBBLE_DATA);
@@ -93,7 +91,7 @@ const BubbleChart = class {
         this.drawOrUpdateChart();
     }
     GetOption() {
-        const formattedYLabel = this.countyName; // Store country names in a variable for use in the formatter
+        const formattedYLabel = this.countyName;
         return {
             series: this.seriesData,
             chart: {
@@ -108,17 +106,15 @@ const BubbleChart = class {
                             const dataPoint = this.seriesData[seriesIndex].data[dataPointIndex];
                             const x = dataPoint[0];
                             const y = dataPoint[1];
-                            // Calculate new zoom ranges
-                            const zoomXPad = 0.5; // Fixed padding for X
-                            const zoomYPad = y * 0.2; // Relative padding for Y
+                            const zoomXPad = 0.5;
+                            const zoomYPad = y * 0.2;
                             this.apexChartInstance.updateOptions({
                                 xaxis: { min: x - zoomXPad, max: x + zoomXPad, tickAmount: 1 },
                                 yaxis: { min: y - zoomYPad, max: y + zoomYPad, tickAmount: 2 },
-                            }, true, true); // Update options without re-rendering or animation
+                            }, true, true);
                         }
                     },
                     beforeResetZoom: () => {
-                        // Reset to original zoom levels
                         this.apexChartInstance.updateOptions({
                             xaxis: { min: this.originalXMin, max: this.originalXMax, tickAmount: undefined },
                             yaxis: { min: this.originalYMin, max: this.originalYMax, tickAmount: undefined },
@@ -127,7 +123,7 @@ const BubbleChart = class {
                 },
             },
             dataLabels: {
-                enabled: false // Usually disabled for bubble charts to avoid clutter
+                enabled: false
             },
             fill: {
                 opacity: 0.8
@@ -136,18 +132,17 @@ const BubbleChart = class {
                 text: this.myTitle
             },
             xaxis: {
-                type: 'numeric', // Important: Bubble chart X-axis is numerical
+                type: 'numeric',
                 title: {
-                    text: this.xTitle, // Informative title for the X-axis
+                    text: this.xTitle,
                 },
                 labels: {
                     formatter: (value) => {
-                        // Use countryNames array to display actual country names on the X-axis
-                        const index = parseInt(value, 10); // Convert string to number
-                        return formattedYLabel[index] || 'NoCountry'; // Return country name, or empty string if index is out of bounds
+                        const index = parseInt(value, 10);
+                        return formattedYLabel[index] || 'NoCountry';
                     },
-                    rotate: -45, // Rotate labels to prevent overlap
-                    hideOverlappingLabels: true, // Hide labels if they overlap
+                    rotate: -45,
+                    hideOverlappingLabels: true,
                 },
             },
             yaxis: {
@@ -156,7 +151,6 @@ const BubbleChart = class {
                 },
                 labels: {
                     formatter: function (value) {
-                        // Format population for readability (e.g., in millions/billions)
                         if (value >= 1_000_000_000)
                             return (value / 1_000_000_000).toFixed(1) + 'B';
                         if (value >= 1_000_000)
@@ -172,8 +166,8 @@ const BubbleChart = class {
             window.alert('Width must be between 0 and 100');
             return;
         }
-        this.charWidth = `${newValue}%`; // Update the width of the chart
-        this.drawOrUpdateChart(); // Redraw the chart with the new width
+        this.charWidth = `${newValue}%`;
+        this.drawOrUpdateChart();
     }
     drawOrUpdateChart() {
         const chartContainer = this.el.shadowRoot?.querySelector("#chartBubble");
@@ -182,14 +176,12 @@ const BubbleChart = class {
             return;
         }
         const newOptions = this.GetOption();
-        if (!this.apexChartInstance) // If the chart instance doesn't exist, create a new one
-         {
+        if (!this.apexChartInstance) {
             this.apexChartInstance = new us(chartContainer, newOptions);
             this.apexChartInstance.render();
         }
-        else // If the chart instance already exists, update it with new options
-         {
-            this.apexChartInstance.updateOptions(newOptions, false, false); // Update the chart options without redrawing the chart
+        else {
+            this.apexChartInstance.updateOptions(newOptions, false, false);
         }
     }
     componentDidLoad() {
@@ -197,11 +189,11 @@ const BubbleChart = class {
     }
     disconnectedCallback() {
         if (this.apexChartInstance) {
-            this.apexChartInstance.destroy(); // Clean up chart instance to prevent memory leaks
+            this.apexChartInstance.destroy();
         }
     }
     render() {
-        return (h("div", { key: '7c78ce4eced2371064c76b4f4b64fa3fe56417a4', id: "chartBubble" }));
+        return (h("div", { key: '6732567bd4e33290853b3dff8e7764b16cca6334', id: "chartBubble" }));
     }
     static get watchers() { return {
         "bubbleData": ["bubbleDataChanged"],

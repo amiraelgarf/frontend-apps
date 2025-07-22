@@ -12,11 +12,13 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "prebuild": "npm run clean:stencil-assets && npm run copy:stencil-assets",
-    "clean:stencil-assets": "shx rm -rf public/assets/stencil-components/", 
+    "clean:stencil-assets": "shx rm -rf public/assets/stencil-components/",
     "copy:stencil-assets": "shx mkdir -p public/assets/stencil-components/ && shx cp -r node_modules/@amiraelgarf/custom-frontend-library/dist/esm/* public/assets/stencil-components/"
   },
   "dependencies": {
-    "@amiraelgarf/custom-frontend-library": "^0.0.8",
+    "@amiraelgarf/custom-frontend-library": "^0.2.2",
+    "@amiraelgarf/custom-frontend-library-react": "^1.0.4",
+    "@stencil/react-output-target": "^1.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

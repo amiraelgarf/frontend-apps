@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-DKeYANm1.js';
+import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
 import { o as ordinal, s as select } from './transform-AkiUVwtn.js';
 import { l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
 import { c as colors } from './colors-CJG58WzC.js';
@@ -12,7 +12,6 @@ const ScatterPlot = class {
         registerInstance(this, hostRef);
     }
     data = [
-        // Type A: y = 2x + 5 + noise
         { x: 0, y: 4.2, type: "A" }, { x: 3, y: 11.5, type: "A" }, { x: 6, y: 17.8, type: "A" },
         { x: 9, y: 23.9, type: "A" }, { x: 12, y: 29.2, type: "A" }, { x: 15, y: 35.1, type: "A" },
         { x: 18, y: 41.9, type: "A" }, { x: 21, y: 47.8, type: "A" }, { x: 24, y: 54.7, type: "A" },
@@ -24,7 +23,6 @@ const ScatterPlot = class {
         { x: 72, y: 163.5, type: "A" }, { x: 75, y: 170.4, type: "A" }, { x: 78, y: 177.3, type: "A" },
         { x: 81, y: 184.2, type: "A" }, { x: 84, y: 191.1, type: "A" }, { x: 87, y: 198.0, type: "A" },
         { x: 90, y: 204.9, type: "A" }, { x: 93, y: 211.8, type: "A" }, { x: 96, y: 218.7, type: "A" },
-        // Type B: y = 1.5x + 10 + noise
         { x: 1, y: 11.3, type: "B" }, { x: 4, y: 16.7, type: "B" }, { x: 7, y: 21.4, type: "B" },
         { x: 10, y: 25.3, type: "B" }, { x: 13, y: 29.5, type: "B" }, { x: 16, y: 34.4, type: "B" },
         { x: 19, y: 38.7, type: "B" }, { x: 22, y: 43.1, type: "B" }, { x: 25, y: 47.5, type: "B" },
@@ -36,7 +34,6 @@ const ScatterPlot = class {
         { x: 73, y: 120.9, type: "B" }, { x: 76, y: 125.5, type: "B" }, { x: 79, y: 130.1, type: "B" },
         { x: 82, y: 134.7, type: "B" }, { x: 85, y: 139.3, type: "B" }, { x: 88, y: 143.9, type: "B" },
         { x: 91, y: 148.5, type: "B" }, { x: 94, y: 153.1, type: "B" }, { x: 97, y: 157.7, type: "B" },
-        // Type C: y = 3x + 0 + noise
         { x: 2, y: 6.1, type: "C" }, { x: 5, y: 15.2, type: "C" }, { x: 8, y: 24.6, type: "C" },
         { x: 11, y: 33.7, type: "C" }, { x: 14, y: 42.8, type: "C" }, { x: 17, y: 51.9, type: "C" },
         { x: 20, y: 60.5, type: "C" }, { x: 23, y: 69.4, type: "C" }, { x: 26, y: 78.5, type: "C" },
@@ -59,22 +56,21 @@ const ScatterPlot = class {
     xTicks = 15;
     yTicks = 10;
     uniqueTypes = [];
-    colorScale; // To store the difrent colors
+    colorScale;
     get el() { return getElement(this); }
     dataWatcher() {
         this.uniqueTypes = this.data.map(d => d.type).filter((v, i, a) => a.indexOf(v) === i);
-        this.colorScale = ordinal(category10).domain(this.uniqueTypes); // Update the color scale when data changes
+        this.colorScale = ordinal(category10).domain(this.uniqueTypes);
         this.componentShouldUpdate();
     }
     componentWillLoad() {
         this.uniqueTypes = this.data.map(d => d.type).filter((v, i, a) => a.indexOf(v) === i);
-        this.colorScale = ordinal(category10).domain(this.uniqueTypes); // Initialize the color scale based on unique types
+        this.colorScale = ordinal(category10).domain(this.uniqueTypes);
     }
     drawChart() {
         const margin = { top: 70, right: 40, bottom: 60, left: 175 };
         const width = this.myWidth - margin.left - margin.right;
         const height = this.myHight - margin.top - margin.bottom;
-        // Clear existing SVG to prevent duplicates
         select(this.el).select('#scatter-plot-ID').selectAll('*').remove();
         const svg = select(this.el).select('#scatter-plot-ID')
             .append("svg")
@@ -89,7 +85,6 @@ const ScatterPlot = class {
             .style("text-anchor", "middle")
             .style("font-size", "20px")
             .text(this.nameOfSactter);
-        // Scales and axes
         const xScale = linear()
             .domain([0, max(this.data, d => d.x) || 0])
             .range([0, width]);
@@ -103,12 +98,11 @@ const ScatterPlot = class {
         svg.append("g")
             .attr("class", "y-axis")
             .call(axisLeft(yScale).ticks(this.yTicks));
-        // Grid lines
         svg.append("g")
             .attr("class", "grid")
             .attr("transform", "translate(0," + height + ")")
             .call(axisBottom(xScale).ticks(this.xTicks)
-            .tickSize(-height).tickFormat(() => "")) // Remove tick labels
+            .tickSize(-height).tickFormat(() => ""))
             .selectAll("line")
             .style("stroke", "#b00505")
             .style("stroke-opacity", 0.1);
@@ -118,7 +112,6 @@ const ScatterPlot = class {
             .tickSize(-width).tickFormat(() => ""))
             .selectAll("line").style("stroke", "#b00505")
             .style("stroke-opacity", 0.1);
-        // Data points
         svg.selectAll("dot")
             .data(this.data).enter()
             .append("circle")
@@ -139,17 +132,16 @@ const ScatterPlot = class {
                 .transition()
                 .duration(200)
                 .style("opacity", (p) => {
-                const currentDatum = p; // Explicitly cast here
+                const currentDatum = p;
                 return (currentDatum.type === d.type || !currentDatum.type) ? 0.8 : 0.1;
             });
         })
             .on("mouseout", () => {
-            svg.selectAll("circle") // Explicitly type the selection
+            svg.selectAll("circle")
                 .transition()
                 .duration(500)
                 .style("opacity", 0.8);
         });
-        // Axis labels
         svg.append("text")
             .attr("class", "x-axis-label")
             .attr("x", width / 2)
@@ -163,7 +155,6 @@ const ScatterPlot = class {
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "middle")
             .text(this.yTitle);
-        // Legend
         if (this.uniqueTypes.length > 1) {
             const legend = svg.append("g")
                 .attr("class", "legend")
@@ -194,7 +185,7 @@ const ScatterPlot = class {
         this.drawChart();
     }
     render() {
-        return (h("div", { key: 'e64a3860ad81d49ccb9c60d8d0b85127c9b27440', id: "scatter-plot-ID" }));
+        return (h("div", { key: 'd0e8c6050d1edda8b83c7b4653e10fffcdc5a433', id: "scatter-plot-ID" }));
     }
     static get watchers() { return {
         "data": ["dataWatcher"]

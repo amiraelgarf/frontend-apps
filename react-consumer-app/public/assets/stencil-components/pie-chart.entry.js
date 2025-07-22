@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-DKeYANm1.js';
+import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
 import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
 import { c as colors } from './colors-CJG58WzC.js';
 
@@ -567,7 +567,6 @@ const PieChart = class {
         const width = 300;
         const height = 300;
         const radius = Math.min(width, height) / 2;
-        // Clear previous chart content
         select(svgEl).selectAll('*').remove();
         const svg = select(svgEl)
             .attr('width', width)
@@ -616,7 +615,7 @@ const PieChart = class {
             .text((d) => d.data.label);
     }
     render() {
-        return (h(h.Fragment, null, h("svg", { key: 'c7f89a26169a3bf477bff6c7c2a71ae88a635a82', id: "pie-chart" }), h("div", { key: '269a16b50c8be65eb112876dab3d1416f573fa85', class: "tooltip", style: { position: 'absolute' } })));
+        return (h(h.Fragment, null, h("svg", { key: 'e0a2b5fbe24f8ae8ffc3b8ba3f5f011b5e59e8ce', id: "pie-chart" }), h("div", { key: '08db5340cd00703375cda5c7aa1daf254fc0fdcc', class: "tooltip", style: { position: 'absolute' } })));
     }
 };
 PieChart.style = pieChartCss;

@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h } from './index-DKeYANm1.js';
+import { r as registerInstance, c as createEvent, h } from './index-crweC_lX.js';
 
 const textAreaCss = ":host{display:block;font-family:'Inter', sans-serif}textarea{width:100%;padding:0.75rem;font-size:1rem;border:1px solid #472626;border-radius:6px;resize:vertical;background-color:#6c4949;color:#333;font-family:inherit;transition:border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out}textarea:focus{border-color:#007bff;box-shadow:0 0 0 3px rgba(0, 123, 255, 0.1);outline:none}";
 
@@ -11,6 +11,9 @@ const TextArea = class {
     value = '';
     valueChange;
     internalValue = this.value;
+    componentWillLoad() {
+        this.internalValue = this.value;
+    }
     valueChanged(newValue) {
         this.internalValue = newValue;
     }
@@ -20,7 +23,12 @@ const TextArea = class {
         this.valueChange.emit(input.value);
     };
     render() {
-        return (h("textarea", { key: '217c46a6666b99252ade6e0f52495e49e0285168', placeholder: this.placeholder, value: this.internalValue, onInput: this.handleInput }));
+        return (h("textarea", { key: 'f5474fc98ddefb9a1ef39afebf9bdbdd2cc15b2a', onInput: this.handleInput, ref: (el) => {
+                if (el) {
+                    el.placeholder = this.placeholder;
+                    el.value = this.internalValue;
+                }
+            } }));
     }
     static get watchers() { return {
         "value": ["valueChanged"]
