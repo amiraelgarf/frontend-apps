@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
-
+import OmarComp from './omarComp/omarComp';
 import {
   MyButton,
   CustomGrid,
@@ -269,6 +269,8 @@ function App() {
           />
         </div>
       </div>
+
+      <OmarComp></OmarComp>
     </>
     
   );

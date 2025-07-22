@@ -16,8 +16,8 @@
     "copy:stencil-assets": "shx mkdir -p public/assets/stencil-components/ && shx cp -r node_modules/@amiraelgarf/custom-frontend-library/dist/esm/* public/assets/stencil-components/"
   },
   "dependencies": {
-    "@amiraelgarf/custom-frontend-library": "^0.2.2",
-    "@amiraelgarf/custom-frontend-library-react": "^1.0.4",
+    "@amiraelgarf/custom-frontend-library": "^0.2.3",
+    "@amiraelgarf/custom-frontend-library-react": "^1.0.5",
     "@stencil/react-output-target": "^1.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
