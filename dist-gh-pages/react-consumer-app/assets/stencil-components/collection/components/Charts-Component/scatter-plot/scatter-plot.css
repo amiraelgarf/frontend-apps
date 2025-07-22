@@ -1,0 +1,69 @@
+.chart-title {
+  font-family: sans-serif;
+  fill: #333;
+}
+
+.x-axis-label, .y-axis-label {
+  font-family: sans-serif;
+  fill: #555;
+  font-size: 14px;
+}
+
+.dot {
+  transition: all 0.2s ease;
+}
+
+.dot:hover {
+  fill: orange;
+  r: 30;
+}
+
+#scatter-plot-ID {
+  display: block;
+  font-family: sans-serif;
+}
+
+.chart-title {
+  font-weight: bold;
+  fill: #333;
+}
+
+.x-axis-label,
+.y-axis-label {
+  font-size: 14px;
+  fill: #555;
+}
+
+.x-axis path,
+.y-axis path {
+  stroke: #888;
+  stroke-width: 1.5;
+}
+
+.x-axis line,
+.y-axis line {
+  stroke: #888;
+}
+
+.x-axis text,
+.y-axis text {
+  font-size: 12px;
+  fill: #555;
+}
+
+/* Grid lines */
+.grid line {
+  stroke: #ccc; 
+  stroke-opacity: 0.5; 
+  shape-rendering: crispEdges; 
+}
+
+/* Data points */
+circle {
+  cursor: pointer; 
+  transition: r 0.1s ease-out;
+}
+
+circle:hover {
+  r: 6; /* Slightly larger on hover (optional) */
+}
