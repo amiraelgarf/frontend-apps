@@ -1,0 +1,33 @@
+{
+  "entries": [
+    "components/Charts-Component/multi-axis-chart/multi-axis-chart.js",
+    "components/Html-Tags-Component/my-button/my-button.js",
+    "components/Html-Tags-Component/my-text-field/my-text-field.js",
+    "components/Charts-Component/bubble-chart/bubble-chart.js",
+    "components/Charts-Component/d3-bar-chart/d3-bar-chart.js",
+    "components/Charts-Component/heatmap/heat-map.js",
+    "components/Charts-Component/histogram-chart/histogram-chart.js",
+    "components/Charts-Component/line-chart/line-chart.js",
+    "components/Charts-Component/pie-chart/pie-chart.js",
+    "components/Charts-Component/scatter-plot/scatter-plot.js",
+    "components/Html-Tags-Component/checkbox-input/checkbox-input.js",
+    "components/Html-Tags-Component/date-input/date-input.js",
+    "components/Html-Tags-Component/my-dropdown-menu/my-dropdown-menu.js",
+    "components/Html-Tags-Component/my-list/my-list.js",
+    "components/Html-Tags-Component/number-input/number-input.js",
+    "components/Html-Tags-Component/radio-button/radio-button.js",
+    "components/Html-Tags-Component/range-input/range-input.js",
+    "components/Html-Tags-Component/right-click-menu/right-click-menu.js",
+    "components/Html-Tags-Component/text-area/text-area.js",
+    "components/Html-Tags-Component/time-input/time-input.js",
+    "components/Html-Tags-Component/ui-cards/ui-cards.js",
+    "components/Html-Tags-Component/ui-notification/ui-notification.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "4.36.0",
+    "typescriptVersion": "5.5.4"
+  },
+  "collections": [],
+  "bundles": []
+}

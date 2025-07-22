@@ -1,0 +1,71 @@
+:host {
+  display: block; /* Ensures the component takes up its own space */
+}
+
+.ParentSelect {
+  /* Basic select element styling */
+  width: 100%; /* Occupy full width of its container */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: Arial, sans-serif; /* Example font */
+  cursor: pointer;
+  
+}
+
+/* --- Theme Specific Styles --- */
+
+/* Siemens Light Theme */
+.ParentSelect.Siemens-LightTheme {
+  background-color: #ffffff;
+  color: #333333;
+  border-color: #c4c4c4;
+}
+
+.ParentSelect.Siemens-LightTheme option {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* VIQ Dark Theme */
+.ParentSelect.VIQ-DarkTheme {
+  background-color: #333333;
+  color: #e0e0e0;
+  border-color: #555555;
+}
+
+.ParentSelect.VIQ-DarkTheme option {
+  background-color: #333333;
+  color: #e0e0e0;
+}
+
+/* --- Variant Size Specific Styles --- */
+
+/* Small Size */
+.ParentSelect.small {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+/* Medium Size */
+.ParentSelect.medium {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+/* Large Size */
+.ParentSelect.large {
+  font-size: 16px;
+  padding: 10px 14px;
+}
+
+/* --- Focus and Hover States --- */
+.ParentSelect:focus {
+  outline: none;
+  border-color: #0056b3; /* Example focus color */
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+}
+
+.ParentSelect:hover {
+  border-color: #999;
+}
