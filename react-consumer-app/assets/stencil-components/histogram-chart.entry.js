@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
+import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
 import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
 import { t as tickIncrement, c as ticks, d as bisectRight, l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
 
@@ -332,7 +332,7 @@ const HistogramChart = class {
         this.renderHistogram();
     }
     render() {
-        return (h("div", { key: 'a11b78415e46334635393b7fff9fbb37e3cebfb9', class: "histogramChart" }));
+        return (h("div", { key: '567c3d73193e8f78b8b32cd3e84f50a9ac388860', class: "histogramChart" }));
     }
     static get watchers() { return {
         "myWidth": ["OnPropChange"],

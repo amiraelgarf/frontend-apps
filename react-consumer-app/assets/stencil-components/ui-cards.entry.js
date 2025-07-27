@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-crweC_lX.js';
+import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
 
 const uiCardsCss = ":host{display:block;font-family:'Inter', sans-serif}.card{border:1px solid #ddd;border-radius:8px;padding:1rem;background-color:#fff;box-shadow:0 2px 8px rgba(0, 0, 0, 0.05)}.card-header h3{margin:0 0 0.5rem 0;font-size:1.2rem;color:#333}.card-content{font-size:1rem;color:#555}";
 
@@ -8,7 +8,7 @@ const UiCards = class {
     }
     cardTitle = "Card";
     render() {
-        return (h(Host, { key: '19695d72f8e9f009ee6a2aa0a795b062e7eda15c' }, h("div", { key: '0d58160b4a7f4aa1c15759f75f72d9dcb41e740e', class: "card" }, this.cardTitle && (h("div", { key: 'd9bc0b44b28278cfcdb6e88d3bb8646f9165f825', class: "card-header" }, h("h3", { key: '9e2fe46b63c926b7e7ba838e2722fe153f6b816b' }, this.cardTitle))), h("div", { key: '3e4152bfa3a99f484a44f577ad742925ad6e6c1f', class: "card-content" }, h("slot", { key: '267c75a7b965c30bc2944fb35cd5fe645735055a' })))));
+        return (h(Host, { key: 'e17b4f30cbb812f8dc67cd6970490505aa07172f' }, h("div", { key: '941cede2c3f87c6878df7455e2380d9c819aaf28', class: "card" }, this.cardTitle && (h("div", { key: 'd55774bc3a78732ecb62fec80689c08aaf0ac64b', class: "card-header" }, h("h3", { key: 'f04bddf9263143dff551a9b6a3c5bf8460bffda2' }, this.cardTitle))), h("div", { key: 'f2a008c4b92b22879b6be4c295efc55e4ab76707', class: "card-content" }, h("slot", { key: 'f730951688b36eb059057e25c1a8c2d497b2c558' })))));
     }
 };
 UiCards.style = uiCardsCss;

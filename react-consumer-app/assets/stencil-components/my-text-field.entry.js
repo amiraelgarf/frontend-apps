@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-crweC_lX.js';
+import { r as registerInstance, h } from './index-CALO0PMU.js';
 
 const myTextFieldCss = ":host{display:block}.labelText{padding:5px;margin-right:700px}#TextField{padding:5px}#TextField.Siemens-LightTheme{border-color:#718096}#TextField.VIQ-DarkTheme{border-radius:5px;border:1px solid #5B809A;background-color:#0F2E44;color:#FFFFFF;}#TextField.small{padding:5px;font-size:12px;min-height:24px}#TextField.medium{padding:10px;font-size:14px;min-height:32px}#TextField.large{padding:15px;font-size:16px;min-height:40px}#TextField:disabled{background-color:#E2E8F0;color:#A0AEC0;cursor:not-allowed;}";
 
@@ -22,7 +22,7 @@ const MyTextField = class {
             'medium': this.variantSize === 'medium',
             'large': this.variantSize === 'large',
         };
-        return (h("div", { key: 'd94510761e9acafb30f0bc71ca2c406bb2fa3834' }, h("form", { key: '984360a2bd16063f2cf0ddaae1216fa7980c6e09' }, h("label", { key: 'e427a52159861d9c7db8a88db1c8ded4d331b3aa', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: 'ed951154ee482ed472e7a58201ea7662989e0304', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable }))));
+        return (h("div", { key: '593e979457ecebed6cf5034146c554500713d715' }, h("form", { key: 'ff1dd7ee54a375a9f46c92593c6374429cc99f4a' }, h("label", { key: '166b300d37d9e7d6f3c2fcbba3857f764fb34813', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: 'f4f2fe6b495ca4dcc817b64cf480226578fe7b02', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable }))));
     }
 };
 MyTextField.style = myTextFieldCss;

@@ -1,4 +1,4 @@
-import { r as registerInstance, h } from './index-crweC_lX.js';
+import { r as registerInstance, h } from './index-CALO0PMU.js';
 
 const myListCss = ":host{display:block}.ListObject{border:2px solid rgb(133, 132, 132);border-radius:10px;box-shadow:5px 5px 5px black;overflow:hidden;text-align:center;max-width:250px}.ListObject.Siemens-LightTheme:hover{background-color:#BEDFE6;cursor:pointer}.ListObject.Siemens-LightTheme{background-color:rgb(138, 200, 253);color:#000}.ListObject.VIQ-DarkTheme{background-color:#040b9c;color:white;box-shadow:5px 5px 5px #4554c6}.ListObject.VIQ-DarkTheme:hover{background-color:#323bef;color:white;cursor:pointer}";
 
@@ -26,7 +26,7 @@ const MyList = class {
             padding: '0',
             margin: '0',
         };
-        return (h("ul", { key: '811bfec822e9edf02393e34d94ed846f7b359f90', style: styleUl }, this.items.map(i => h("li", { class: classes }, i))));
+        return (h("ul", { key: '39530b2dde45fd87bd08393b98362dc093c564f8', style: styleUl }, this.items.map(i => h("li", { class: classes }, i))));
     }
 };
 MyList.style = myListCss;

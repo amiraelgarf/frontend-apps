@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
+import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
 
 const rightClickMenuCss = ".context-menu{position:absolute;list-style-type:none;padding:5px;margin:0;width:250px;background-image:linear-gradient(to right top, #0b0b0b,#1f1f1f,#323232,#454545,#5a5a5a);color:white;box-shadow:0px 2px 2px 0px rgba(0,0,0,0.5), inset 0px -3px 6px -2px rgba(0,0,0,0.3)}.context-menu li{display:flex;align-items:center;padding:5px 10px;cursor:pointer;position:relative;transition:bakground-color 0.3 ease}.context-menu li:hover{background-color:#555}.context-menu li img{margin-right:10px;width:16px;height:16px}.submenu{display:none;position:absolute;top:0;left:250px;background-image:linear-gradient(to right top, #0b0b0b,#1f1f1f,#323232,#454545,#5a5a5a);padding:4px;list-style-type:none;width:150px;box-shadow:0px 2px 2px 0px rgba(0,0,0,0.5), inset 0px -3px 6px -2px rgba(0,0,0,0.3);color:white}.has-submenu::after{content:'▶';position:absolute;right:10px;font-size:12px;color:white}.has-submenu:hover .submenu{display:block}.menu-divider{border:none;border-top:1px solid lightgray;margin:5px 0;opacity:0.5}";
 
@@ -67,7 +67,7 @@ const RightClickMenu = class {
             } }, item.children.map(child => this.renderTheMenu(child))))));
     }
     render() {
-        return (h("div", { key: 'f35980cacb2aa7f6d321a5e75be08605e7103b60', style: { height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' } }, h("slot", { key: '0551ba213859f75bc5eae3cdef6c4465e560a66a' }), this.menuVisible && (h("ul", { key: '308c126150a9734fa2b61b12c8053996ab13c050', ref: (el) => this.menuElementRef = el, class: "context-menu", style: {
+        return (h("div", { key: '323a3e1458c7d5ede4bf97d2cf0a175f9757e675', style: { height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' } }, h("slot", { key: '3a2177a771d82f555ee0ae41b6cde600c0add1b4' }), this.menuVisible && (h("ul", { key: 'fedfaaa3014d411cbf5994e8a2023b1b9ccf4976', ref: (el) => this.menuElementRef = el, class: "context-menu", style: {
                 top: `${this.adjustedPosition.y}px`,
                 left: `${this.adjustedPosition.x}px`
             } }, this.theItems.map(i => this.renderTheMenu(i))))));

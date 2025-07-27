@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
+import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
 import { o as ordinal, s as select } from './transform-AkiUVwtn.js';
 import { l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
 import { c as colors } from './colors-CJG58WzC.js';
@@ -185,7 +185,7 @@ const ScatterPlot = class {
         this.drawChart();
     }
     render() {
-        return (h("div", { key: 'da4e893d1413f22433205b60ba12014fffca1d3c', id: "scatter-plot-ID" }));
+        return (h("div", { key: '6ade0eaa50cb4a6daff4d6c886f4b0ca1ea892de', id: "scatter-plot-ID" }));
     }
     static get watchers() { return {
         "data": ["dataWatcher"]

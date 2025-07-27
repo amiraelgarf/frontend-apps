@@ -1,4 +1,4 @@
-import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
+import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
 import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
 import { c as colors } from './colors-CJG58WzC.js';
 
@@ -615,7 +615,7 @@ const PieChart = class {
             .text((d) => d.data.label);
     }
     render() {
-        return (h(h.Fragment, null, h("svg", { key: '5f1ec1347dfdd6a7cdc7ce9eecc3114aa0f46c0d', id: "pie-chart" }), h("div", { key: '4ab120998189ac7cbde9cbc7ba043b803dca0e6f', class: "tooltip", style: { position: 'absolute' } })));
+        return (h(h.Fragment, null, h("svg", { key: 'eaf7e5923cb7a3b89e92212bddc5ee72bc3f03b4', id: "pie-chart" }), h("div", { key: 'ab309e0096a638e42fb53898cd8f80e5ec6bceb8', class: "tooltip", style: { position: 'absolute' } })));
     }
 };
 PieChart.style = pieChartCss;
