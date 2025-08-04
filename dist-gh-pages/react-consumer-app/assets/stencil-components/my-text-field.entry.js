@@ -1,28 +1,31 @@
-import { r as registerInstance, h } from './index-crweC_lX.js';
+import { r as registerInstance, c as createEvent, h } from './index-DcMv3VsE.js';
 
-const myTextFieldCss = ":host{display:block}.labelText{padding:5px;margin-right:700px}#TextField{padding:5px}#TextField.Siemens-LightTheme{border-color:#718096}#TextField.VIQ-DarkTheme{border-radius:5px;border:1px solid #5B809A;background-color:#0F2E44;color:#FFFFFF;}#TextField.small{padding:5px;font-size:12px;min-height:24px}#TextField.medium{padding:10px;font-size:14px;min-height:32px}#TextField.large{padding:15px;font-size:16px;min-height:40px}#TextField:disabled{background-color:#E2E8F0;color:#A0AEC0;cursor:not-allowed;}";
+const myTextFieldCss = ":host{display:block}input{border-radius:5px;border:3px solid var(--theme-input--border-color);background-color:var(--theme-input--background);color:var(--theme-label--color)}input[disabled= true ]{background-color:var(--theme-label--color--disabled)}input.small{font-size:12px;min-height:24px}input.medium{font-size:14px;min-height:36px}input.large{font-size:16px;min-height:40px}@media (max-width: 768px){input.small{font-size:0.9rem;min-height:30px}input.medium{font-size:1rem;min-height:36px}input.large{font-size:1.1rem;min-height:42px}}";
 
 const MyTextField = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
+        this.valueChanged = createEvent(this, "valueChanged", 7);
     }
     textInPlaceholder = "Enter your text here";
     lablelText = "Text Field";
-    ColorOfLable = "black";
-    Theme = "Siemens-LightTheme";
+    ColorOfLable = "--theme-label--color";
     variantSize = 'medium';
     IsRequeredToFill = false;
     size = 20;
     disable = false;
+    valueChanged;
+    onInputChange = (event) => {
+        const target = event.target;
+        this.valueChanged.emit(target.value);
+    };
     render() {
         const classesInput = {
-            'Siemens-LightTheme': this.Theme === 'Siemens-LightTheme',
-            'VIQ-DarkTheme': this.Theme === 'VIQ-DarkTheme',
             'small': this.variantSize === 'small',
             'medium': this.variantSize === 'medium',
             'large': this.variantSize === 'large',
         };
-        return (h("div", { key: '0680b07f11882231e98ede125821dd7b84f4b304' }, h("form", { key: '8c53170b1c97412648a6f68a6bb1176cb52d06a0' }, h("label", { key: '04e0e4f6aff3621e6f0eca7ea582dc6940ca99c5', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: '32bddfba7b78cef6a33b96871fc3e18bf3e7d708', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable }))));
+        return (h("div", { key: '4a36ab8a81776a104b21ec881ebacf615614c568' }, h("ix-style-loader", { key: '88e7e4ec059905749d60f2f81c0eb173271f93c7' }), h("form", { key: '77af932f949e509d6573031fa46ba49b69ca5c5b' }, h("label", { key: '6aa45682b13dde6ccd1ba8633ae316d51abc9078', htmlFor: "TextField", id: "labelText", style: { color: this.ColorOfLable } }, this.lablelText), h("input", { key: '1a5f29ccfd7a48b0d1f45131c3533922edf84f37', type: "text", placeholder: this.textInPlaceholder, id: "TextField", class: classesInput, required: this.IsRequeredToFill, size: this.size, disabled: this.disable, onInput: this.onInputChange }))));
     }
 };
 MyTextField.style = myTextFieldCss;

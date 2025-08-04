@@ -11,24 +11,24 @@ import {
   DateInput,
   TimeInput,
   RangeInput,
+  ToggleSwitch,
 } from '@amiraelgarf/custom-frontend-library-react';
+
+import { IxCard } from "@siemens/ix-react";
 
 function App() {
   const [messages, setMessages] = useState('');
   const messagesEndRef = useRef(null);
 
-  // Function to log events to the messages area
   const logEvent = useCallback((componentName, eventName, detail) => {
     const timestamp = new Date().toLocaleTimeString();
     setMessages((prevMessages) => prevMessages + `[${timestamp}] ${componentName} - ${eventName}: ${JSON.stringify(detail)}\n`);
   }, []);
 
-  // Effect to scroll to the bottom of the messages area when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Sample data for the AG Grid component
   const sampleData = [
     { id: 2, name: 'Bob Johnson', age: 24, city: 'London', status: 'Inactive' },
     { id: 1, name: 'Alice Smith', age: 30, city: 'New York', status: 'Active' },
@@ -44,7 +44,6 @@ function App() {
     { id: 12, name: 'Liam Blue', age: 33, city: 'Dubai', status: 'Inactive' },
   ];
 
-  // Column definitions for the AG Grid component
   const sampleColumns = [
     { header: 'ID', field: 'id', width: 80, sortable: true, filterable: false },
     {
@@ -53,8 +52,6 @@ function App() {
       width: 200,
       sortable: true,
       filterable: true,
-      // renderCell is a function, which might need to be handled carefully by the Stencil wrapper
-      // If the wrapper doesn't directly support functions for renderCell, you might need to adjust
       renderCell: (params) => {
         return params.data.status === 'Active' ? `<strong>${params.value}</strong>` : params.value;
       },
@@ -101,17 +98,22 @@ function App() {
   const multiAxisColors = ['#004D73', '#93DCED', '#FFC328'];
 
   return (
-    <>
-      <div className="wrapper">
-        <h1>Stencil Components in React</h1>
+    <div className="wrapper">
+      <ToggleSwitch></ToggleSwitch>
+      <h1>Stencil Components with ix-card</h1>
 
-        <div id="output-messages" className="component-example">
+      <IxCard variant="outline" class="output-example">
+        <div className="card-content-wrapper">
           <h2>Event Output</h2>
-          <pre id="messages">{messages}</pre>
-          <div ref={messagesEndRef} /> {/* For auto-scrolling */}
+          <div id="output-messages">
+            <pre id="messages">{messages}</pre>
+            <div ref={messagesEndRef} />
+          </div>
         </div>
+      </IxCard>
 
-        <div className="component-example grid-example">
+      <IxCard variant="outline" class="grid-example">
+        <div className="card-content-wrapper">
           <h2>AG Grid Stencil Component Example</h2>
           <CustomGrid
             data={sampleData}
@@ -134,17 +136,10 @@ function App() {
             onGridFilterChange={(event) => logEvent('CustomGrid', 'gridFilterChange', event.detail)}
           />
         </div>
+      </IxCard>
 
-        <div className="component-example chart-example">
-          <h2>D3 Bar Chart Example</h2>
-          <D3BarChart
-            chartData={barChartData}
-            width={0} 
-            height={0} 
-          />
-        </div>
-
-        <div className="component-example chart-example">
+      <IxCard variant="outline" class="chart-example">
+        <div className="card-content-wrapper">
           <h2>Multi-Axis Chart Example</h2>
           <MultiAxisChart
             chartTitle="Default Multi-Axis Chart"
@@ -155,124 +150,85 @@ function App() {
             colors={multiAxisColors}
           />
         </div>
+      </IxCard>
+      
+      <IxCard variant="outline" class="chart-example">
+        <div className="card-content-wrapper">
+          <h2>D3 Bar Chart Example</h2>
+          <D3BarChart
+            chartData={barChartData}
+            width={0}
+            height={0}
+          />
+        </div>
+      </IxCard>
 
-        <div className="component-example">
+      <IxCard variant="insight" selected={false}>
+        <div className="card-content-wrapper">
           <h2>My Button</h2>
-          <MyButton
-            label="Primary Button"
-            variant="primary"
-            onMyClick={(e) => logEvent('MyButton', 'myClick', { label: 'Primary Button' })}
-          />
-          <MyButton
-            label="Outline Button"
-            variant="outline"
-            size="small"
-            onMyClick={(e) => logEvent('MyButton', 'myClick', { label: 'Outline Button' })}
-          />
-          <MyButton
-            label="Disabled Button"
-            disabled={true} // Use boolean true for disabled prop
-            onMyClick={(e) => logEvent('MyButton', 'myClick', { label: 'Disabled Button' })}
-          />
+          <MyButton label="Primary Button" variant="primary" onMyClick={(e) => logEvent('my-button', 'myClick', { label: e.detail.label })} />
+          <MyButton label="Secondary Button" variant="secondary" onMyClick={(e) => logEvent('my-button', 'myClick', { label: e.detail.label })} />
+          <MyButton label="Outline Button" variant="outline" onMyClick={(e) => logEvent('my-button', 'myClick', { label: e.detail.label })} />
+          <MyButton label="Disabled Button" variant="primary" disabled={true} onMyClick={(e) => logEvent('my-button', 'myClick', { label: e.detail.label })} />
         </div>
-
-        <div className="component-example">
+      </IxCard>
+      
+      <IxCard variant="filled">
+        <div className="card-content-wrapper">
           <h2>Checkbox Input</h2>
-          <CheckboxInput
-            name="newsletter"
-            value="subscribe"
-            label="Subscribe to Newsletter"
-            checked={true} // Use boolean true for checked prop
-            onMyChange={(e) => logEvent('CheckboxInput', 'myChange', e.detail)}
-          />
-          <CheckboxInput
-            name="notifications"
-            value="disabled"
-            label="Disable Notifications"
-            disabled={true}
-            onMyChange={(e) => logEvent('CheckboxInput', 'myChange', e.detail)}
-          />
+          <CheckboxInput name="newsletter" value="subscribe" label="Subscribe to Newsletter" checked={true} onMyChange={(e) => logEvent('checkbox-input', 'myChange', e.detail)} />
+          <CheckboxInput name="notifications" value="disabled" label="Disable Notifications" disabled={true} onMyChange={(e) => logEvent('checkbox-input', 'myChange', e.detail)} />
         </div>
+      </IxCard>
 
-        <div className="component-example">
+      <IxCard variant="outline" selected={true}>
+        <div className="card-content-wrapper">
           <h2>Radio Button</h2>
-          <RadioButton
-            name="color"
-            value="red"
-            label="Red"
-            onMyChange={(e) => logEvent('RadioButton', 'myChange', e.detail)}
-          />
-          <RadioButton
-            name="color"
-            value="green"
-            label="Green"
-            disabled={true}
-            onMyChange={(e) => logEvent('RadioButton', 'myChange', e.detail)}
-          />
+          <RadioButton name="color" value="red" label="Red" onMyChange={(e) => logEvent('radio-button', 'myChange', e.detail)} />
+          <RadioButton name="color" value="green" label="Green" disabled={true} onMyChange={(e) => logEvent('radio-button', 'myChange', e.detail)} />
         </div>
+      </IxCard>
 
-        <div className="component-example">
+      <IxCard variant="insight">
+        <div className="card-content-wrapper">
           <h2>Date Input</h2>
           <DateInput
-            name="birthDate"
-            label="Date of Birth"
-            onMyChange={(e) => logEvent('DateInput', 'myChange', { value: e.detail })}
+            name="myDate"
+            label="Select a Date"
+            value="2025-07-29"
+            min="2025-01-01"
+            max="2025-12-31"
+            placeholder="YYYY-MM-DD"
+            onMyChange={(e) => logEvent('date-input', 'myChange', { value: e.detail })}
           />
           <DateInput
-            name="disabledDate"
-            label="Disabled Date"
-            value="2024-01-01"
+            name="anotherDate"
+            label="Event Date (Disabled)"
             disabled={true}
-            onMyChange={(e) => logEvent('DateInput', 'myChange', { value: e.detail })}
+            value="2025-08-15"
+            onMyChange={(e) => logEvent('date-input', 'myChange', { value: e.detail })}
           />
         </div>
+      </IxCard>
 
-        <div className="component-example">
+      <IxCard variant="filled">
+        <div className="card-content-wrapper">
           <h2>Time Input</h2>
-          <TimeInput
-            name="meetingTime"
-            label="Meeting Time"
-            value="14:30"
-            min="09:00"
-            max="19:00" // Corrected from "7:00" to "19:00" for a valid 24-hour format
-            step="900"
-            onMyChange={(e) => logEvent('TimeInput', 'myChange', { value: e.detail })}
-          />
-          <TimeInput
-            name="disabledTime"
-            label="Disabled Time"
-            value="10:00"
-            disabled={true}
-            onMyChange={(e) => logEvent('TimeInput', 'myChange', { value: e.detail })}
-          />
+          <TimeInput name="workStartTime" label="Work Start Time" min="08:00" max="09:30" step="15" onMyChange={(e) => logEvent('time-input', 'myChange', { value: e.detail })} />
+          <TimeInput name="unavailableTime" label="Unavailable" value="13:00" disabled={true} onMyChange={(e) => logEvent('time-input', 'myChange', { value: e.detail })} />
+          <TimeInput name="alarmTime" label="Set Alarm" value="07:30" onMyChange={(e) => logEvent('time-input', 'myChange', { value: e.detail })} />
         </div>
+      </IxCard>
 
-        <div className="component-example">
+      <IxCard variant="outline">
+        <div className="card-content-wrapper">
           <h2>Range Input</h2>
-          <RangeInput
-            name="volume"
-            label="Volume"
-            value="50"
-            min="0"
-            max="100"
-            step="5"
-            onMyChange={(e) => logEvent('RangeInput', 'myChange', { value: e.detail })}
-          />
-          <RangeInput
-            name="zoom"
-            label="Zoom Level"
-            value="20"
-            min="10"
-            max="100"
-            disabled={true}
-            onMyChange={(e) => logEvent('RangeInput', 'myChange', { value: e.detail })}
-          />
+          <RangeInput name="volume" label="Volume" value="50" min="0" max="100" step="5" onMyChange={(e) => logEvent('range-input', 'myChange', { value: e.detail })} />
+          <RangeInput name="zoom" label="Zoom Level" value="20" min="10" max="100" disabled={true} onMyChange={(e) => logEvent('range-input', 'myChange', { value: e.detail })} />
         </div>
-      </div>
+      </IxCard>
 
-      <OmarComp></OmarComp>
-    </>
-    
+    </div>
   );
 }
 

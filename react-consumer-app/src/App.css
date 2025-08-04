@@ -1,60 +1,65 @@
+.body{
+  background-color: var(--theme-input--background, #8ca1ab33);
+}
 
 
 .wrapper {
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   padding: 20px;
-  background-color: #f0f2f5;
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
 h1 {
-  color: #333;
+  color: var(--theme-color-std-text);
   margin-bottom: 30px;
   width: 100%;
   text-align: center;
 }
 
-.component-example {
-  background-color: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+ix-card {
   width: 100%;
   max-width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  border: 1px solid #e0e0e0;
   margin: 10px;
 }
-.component-example.grid-example {
+
+ix-card.grid-example {
   max-width: 1200px;
 }
 
-.component-example.chart-example {
-  max-width: 800px; /* Wider for charts */
+ix-card.chart-example {
+  max-width: 800px;
   height: 500px;
 }
 
-.component-example h2 {
+ix-card.output-example {
+  max-width: 50%;
+}
+
+.card-content-wrapper {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-content-wrapper h2 {
   margin-top: 0;
-  color: #555;
+  color: var(--theme-color-std-text);
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
 #output-messages {
-  margin-top: 20px;
   padding: 15px;
   background-color: #e6f7ff;
   border: 1px solid #91d5ff;
   border-radius: 8px;
-  width: 100%;
-  max-width: 50%;
   font-family: monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -66,10 +71,11 @@ h1 {
   body {
     padding: 10px;
   }
-  .component-example, #output-messages {
+  ix-card {
     max-width: 95%;
   }
 }
+
 custom-grid {
   width: 100%;
   height: 300px;

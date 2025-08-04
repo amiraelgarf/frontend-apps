@@ -16,9 +16,15 @@
     "copy:stencil-assets": "shx mkdir -p public/assets/stencil-components/ && shx cp -r node_modules/@amiraelgarf/custom-frontend-library/dist/esm/* public/assets/stencil-components/"
   },
   "dependencies": {
-    "@amiraelgarf/custom-frontend-library": "^0.2.3",
-    "@amiraelgarf/custom-frontend-library-react": "^1.0.5",
+    "@amiraelgarf/custom-frontend-library": "^0.3.9",
+    "@amiraelgarf/custom-frontend-library-react": "^1.2.0",
+    "@floating-ui/dom": "^1.7.2",
+    "@siemens/ix": "^3.1.0",
+    "@siemens/ix-icons": "^3.1.1",
+    "@siemens/ix-react": "^3.1.0",
     "@stencil/react-output-target": "^1.2.0",
+    "animejs": "^3.2.1",
+    "luxon": "^3.7.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

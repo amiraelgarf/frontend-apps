@@ -1,7 +1,7 @@
-import { g as getElement, r as registerInstance, h } from './index-crweC_lX.js';
-import { u as us } from './apexcharts.esm-DWm2rkNx.js';
+import { g as getElement, r as registerInstance, h } from './index-DcMv3VsE.js';
+import { g as gs } from './apexcharts.esm-CPxMffEF.js';
 
-const bubbleChartCss = "";
+const bubbleChartCss = "#chartBubble{width:100%;height:100%;overflow:hidden}:host{display:block;width:100%}@media (max-width: 768px){#chartBubble{height:300px !important}}";
 
 const DEFAULT_BUBBLE_DATA = [
     { "country": "China", "population": 1416000000, "world_land_area_percentage": 6.30 },
@@ -52,8 +52,8 @@ const BubbleChart = class {
     myTitle = 'Country Population vs. Land Area Percentage';
     xTitle = 'Country (Hover for Name)';
     yTitle = 'Population';
-    myWidth = 100;
-    charWidth;
+    myWidth = '100%';
+    charWidth = '100%';
     bubbleData = DEFAULT_BUBBLE_DATA;
     seriesData;
     countyName;
@@ -62,19 +62,29 @@ const BubbleChart = class {
     originalXMax = 0;
     originalYMin = 0;
     originalYMax = 0;
+    resizeObserver;
+    observeResize() {
+        this.resizeObserver = new ResizeObserver(() => {
+            this.drawOrUpdateChart();
+        });
+        const container = this.el.shadowRoot?.querySelector("#chartBubble");
+        if (container) {
+            this.resizeObserver.observe(container);
+        }
+    }
     constructor(hostRef) {
         registerInstance(this, hostRef);
         this.ProcessBubbleData(this.bubbleData || DEFAULT_BUBBLE_DATA);
-        this.charWidth = `${this.myWidth}%`;
+        this.charWidth = this.myWidth;
     }
     ProcessBubbleData(TheData) {
         this.seriesData = [{
                 name: 'Population vs. Land Area Percentage',
-                data: TheData.map((items, index) => [
-                    index,
-                    items.population,
-                    items.world_land_area_percentage
-                ]),
+                data: TheData.map((items) => ({
+                    x: items.country,
+                    y: items.population,
+                    z: items.world_land_area_percentage,
+                })),
             }];
         this.countyName = TheData.map(item => item.country);
         this.originalXMin = -0.5;
@@ -88,39 +98,21 @@ const BubbleChart = class {
         this.drawOrUpdateChart();
     }
     propertiesChanged() {
+        this.observeResize();
         this.drawOrUpdateChart();
     }
     GetOption() {
-        const formattedYLabel = this.countyName;
         return {
             series: this.seriesData,
             chart: {
                 width: this.charWidth,
                 height: this.myHeight,
                 type: 'bubble',
-                events: {
-                    dataPointSelection: (event, chartContext, config) => {
-                        const seriesIndex = config.seriesIndex;
-                        const dataPointIndex = config.dataPointIndex;
-                        if (seriesIndex !== -1 && dataPointIndex !== -1) {
-                            const dataPoint = this.seriesData[seriesIndex].data[dataPointIndex];
-                            const x = dataPoint[0];
-                            const y = dataPoint[1];
-                            const zoomXPad = 0.5;
-                            const zoomYPad = y * 0.2;
-                            this.apexChartInstance.updateOptions({
-                                xaxis: { min: x - zoomXPad, max: x + zoomXPad, tickAmount: 1 },
-                                yaxis: { min: y - zoomYPad, max: y + zoomYPad, tickAmount: 2 },
-                            }, true, true);
-                        }
-                    },
-                    beforeResetZoom: () => {
-                        this.apexChartInstance.updateOptions({
-                            xaxis: { min: this.originalXMin, max: this.originalXMax, tickAmount: undefined },
-                            yaxis: { min: this.originalYMin, max: this.originalYMax, tickAmount: undefined },
-                        }, true, true);
-                    }
-                },
+            },
+            colors: ['#4dabf7'],
+            stroke: {
+                show: true,
+                width: 1,
             },
             dataLabels: {
                 enabled: false
@@ -129,25 +121,32 @@ const BubbleChart = class {
                 opacity: 0.8
             },
             title: {
-                text: this.myTitle
+                text: this.myTitle,
+                style: {
+                    color: 'var(--theme-color-std-text)',
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
             },
             xaxis: {
-                type: 'numeric',
-                title: {
-                    text: this.xTitle,
-                },
+                type: 'category',
+                categories: this.countyName,
                 labels: {
-                    formatter: (value) => {
-                        const index = parseInt(value, 10);
-                        return formattedYLabel[index] || 'NoCountry';
-                    },
-                    rotate: -45,
-                    hideOverlappingLabels: true,
-                },
+                    rotate: -90,
+                    style: {
+                        fontSize: '10px',
+                        colors: 'var(--theme-color-std-text)'
+                    }
+                }
             },
             yaxis: {
+                min: this.originalYMin,
+                max: this.originalYMax,
                 title: {
-                    text: this.yTitle
+                    text: this.yTitle,
+                    style: {
+                        color: 'var(--theme-color-std-text)'
+                    }
                 },
                 labels: {
                     formatter: function (value) {
@@ -156,14 +155,18 @@ const BubbleChart = class {
                         if (value >= 1_000_000)
                             return (value / 1_000_000).toFixed(0) + 'M';
                         return value.toString();
+                    },
+                    style: {
+                        colors: 'var(--theme-chart-ticks)'
                     }
-                },
-            },
+                }
+            }
         };
     }
     myWidthChanged(newValue) {
-        if (newValue < 0 || newValue > 100) {
-            window.alert('Width must be between 0 and 100');
+        const percentage = parseFloat(newValue);
+        if (newValue.includes('%') && (percentage < 0 || percentage > 100)) {
+            window.alert('Width percentage must be between 0% and 100%');
             return;
         }
         this.charWidth = `${newValue}%`;
@@ -177,7 +180,7 @@ const BubbleChart = class {
         }
         const newOptions = this.GetOption();
         if (!this.apexChartInstance) {
-            this.apexChartInstance = new us(chartContainer, newOptions);
+            this.apexChartInstance = new gs(chartContainer, newOptions);
             this.apexChartInstance.render();
         }
         else {
@@ -185,15 +188,20 @@ const BubbleChart = class {
         }
     }
     componentDidLoad() {
+        this.observeResize();
         this.drawOrUpdateChart();
     }
     disconnectedCallback() {
         if (this.apexChartInstance) {
             this.apexChartInstance.destroy();
         }
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
     }
     render() {
-        return (h("div", { key: '6732567bd4e33290853b3dff8e7764b16cca6334', id: "chartBubble" }));
+        const estimatedWidth = this.countyName.length * 30;
+        return (h("div", { key: '8705e3034b3db0464296253f2c2025b5ae5bf13c' }, h("ix-style-loader", { key: '719aa6f32b8a4bf5b83c91b04bee8cc2494a8f23' }), h("div", { key: 'dc38c12d6cade1c36fc4dbbb85f92db14f3974c5', style: { overflowX: 'auto', width: '100%' } }, h("div", { key: 'bc1fbf13dd2b653c25a2fee8a25179df0b9d576a', id: "chartBubble", style: { minWidth: `${estimatedWidth}px`, width: this.charWidth } }))));
     }
     static get watchers() { return {
         "bubbleData": ["bubbleDataChanged"],

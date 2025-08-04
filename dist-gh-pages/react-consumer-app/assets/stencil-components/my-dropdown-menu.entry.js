@@ -1,6 +1,6 @@
-import { r as registerInstance, h } from './index-crweC_lX.js';
+import { r as registerInstance, h } from './index-DcMv3VsE.js';
 
-const myDropdownMenuCss = ":host{display:block;}.ParentSelect{width:100%;padding:8px 12px;border:1px solid #ccc;border-radius:4px;font-family:Arial, sans-serif;cursor:pointer}.ParentSelect.Siemens-LightTheme{background-color:#ffffff;color:#333333;border-color:#c4c4c4}.ParentSelect.Siemens-LightTheme option{background-color:#ffffff;color:#333333}.ParentSelect.VIQ-DarkTheme{background-color:#333333;color:#e0e0e0;border-color:#555555}.ParentSelect.VIQ-DarkTheme option{background-color:#333333;color:#e0e0e0}.ParentSelect.small{font-size:12px;padding:6px 10px}.ParentSelect.medium{font-size:14px;padding:8px 12px}.ParentSelect.large{font-size:16px;padding:10px 14px}.ParentSelect:focus{outline:none;border-color:#0056b3;box-shadow:0 0 0 2px rgba(0, 86, 179, 0.2)}.ParentSelect:hover{border-color:#999}";
+const myDropdownMenuCss = ":host{display:block;width:100%}select{width:100%;max-width:100%;padding:0.5rem;font-size:1rem}@media (max-width: 768px){select.small{font-size:0.8rem}select.medium{font-size:1rem}select.large{font-size:1.2rem}}.ParentSelect{width:100%;padding:8px 12px;border:3px solid var(--theme-menu--border-color);border-radius:4px;font-family:Arial, sans-serif;cursor:pointer}.ParentSelect{background-color:var(--theme-menu--background);color:var( --theme-menu-header--color)}.ParentSelect option{background-color:var(--theme-menu-item--background);color:var(--theme-menu-item--color)}.ParentSelect option:hover{background-color:var(--theme-menu-item--background--hover);color:var(--theme-menu-item--color--hover)}.ParentSelect.small{font-size:12px;padding:6px 10px}.ParentSelect.medium{font-size:14px;padding:8px 12px}.ParentSelect.large{font-size:16px;padding:10px 14px}";
 
 const MyDropdownMenu = class {
     constructor(hostRef) {
@@ -8,19 +8,16 @@ const MyDropdownMenu = class {
     }
     options = [];
     valeOfEachOption = [];
-    theme = 'Siemens-LightTheme';
     variantSize = 'medium';
     render() {
         const classOption = {
             "ParentSelect": true,
-            'Siemens-LightTheme': this.theme === 'Siemens-LightTheme',
-            'VIQ-DarkTheme': this.theme === 'VIQ-DarkTheme',
             'small': this.variantSize === 'small',
             'medium': this.variantSize === 'medium',
             'large': this.variantSize === 'large',
         };
         const optionsLength = this.options.length;
-        return (h("select", { key: 'f0d86a3e7ae5751220798b96ec6951c341951812', class: classOption }, Array.from({ length: optionsLength }).map((_, i) => (h("option", { value: this.valeOfEachOption[i] }, this.options[i])))));
+        return (h(h.Fragment, null, h("ix-style-loader", { key: '7de01017f1f312ec8ab9cf7af780a26ac3ed8876' }), h("select", { key: '33f0538ee9a94dc4a3fc0468827fc8e3d6f4a7d5', class: classOption, style: { width: '100%' } }, Array.from({ length: optionsLength }).map((_, i) => (h("option", { value: this.valeOfEachOption[i] ?? this.options[i] }, this.options[i]))))));
     }
 };
 MyDropdownMenu.style = myDropdownMenuCss;

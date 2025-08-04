@@ -1,11 +1,11 @@
-import { r as registerInstance, g as getElement, h } from './index-crweC_lX.js';
-import { o as ordinal, s as select } from './transform-AkiUVwtn.js';
-import { l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
+import { r as registerInstance, g as getElement, h } from './index-DcMv3VsE.js';
+import { o as ordinal, s as select } from './transform-CguFiH21.js';
+import { l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-B0BXeej7.js';
 import { c as colors } from './colors-CJG58WzC.js';
 
 var category10 = colors("1f77b4ff7f0e2ca02cd627289467bd8c564be377c27f7f7fbcbd2217becf");
 
-const scatterPlotCss = ".chart-title{font-family:sans-serif;fill:#333}.x-axis-label,.y-axis-label{font-family:sans-serif;fill:#555;font-size:14px}.dot{transition:all 0.2s ease}.dot:hover{fill:orange;r:30}#scatter-plot-ID{display:block;font-family:sans-serif}.chart-title{font-weight:bold;fill:#333}.x-axis-label,.y-axis-label{font-size:14px;fill:#555}.x-axis path,.y-axis path{stroke:#888;stroke-width:1.5}.x-axis line,.y-axis line{stroke:#888}.x-axis text,.y-axis text{font-size:12px;fill:#555}.grid line{stroke:#ccc;stroke-opacity:0.5;shape-rendering:crispEdges}circle{cursor:pointer;transition:r 0.1s ease-out}circle:hover{r:6;}";
+const scatterPlotCss = ":host{display:block;width:100%;height:400px;font-family:sans-serif}.scatter-plot-ID{width:100%;height:100%;display:flex;justify-content:center;align-items:center}.chart-title{font-weight:bold;font-size:18px;fill:var(--theme-color-std-text)}.x-axis-label,.y-axis-label{font-size:14px;fill:var(--theme-color-std-text)}.x-axis path,.y-axis path{stroke:var(--theme-chart-axes);stroke-width:1.5}.x-axis line,.y-axis line{stroke:var( --theme-chart-ticks)}.x-axis text,.y-axis text{font-size:12px;fill:var(--theme-color-std-text)}.grid line{stroke:var(--theme-chart-grid-lines);stroke-opacity:0.5;shape-rendering:crispEdges}circle{cursor:pointer;transition:r 0.2s ease-out, fill 0.2s ease-in}circle:hover{fill:orange;r:6}.legend rect{opacity:0.6}.legend text{font-size:12px;fill:var(--theme-color-std-text)}";
 
 const ScatterPlot = class {
     constructor(hostRef) {
@@ -58,75 +58,89 @@ const ScatterPlot = class {
     uniqueTypes = [];
     colorScale;
     get el() { return getElement(this); }
-    dataWatcher() {
+    resizeObserver;
+    prepareColorScale() {
         this.uniqueTypes = this.data.map(d => d.type).filter((v, i, a) => a.indexOf(v) === i);
         this.colorScale = ordinal(category10).domain(this.uniqueTypes);
-        this.componentShouldUpdate();
     }
-    componentWillLoad() {
-        this.uniqueTypes = this.data.map(d => d.type).filter((v, i, a) => a.indexOf(v) === i);
-        this.colorScale = ordinal(category10).domain(this.uniqueTypes);
+    observeResize() {
+        this.resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                const { width, height } = entry.contentRect;
+                if (Math.abs(this.myWidth - width) > 1 || Math.abs(this.myHight - height) > 1) {
+                    this.myWidth = width;
+                    this.myHight = height;
+                    this.drawChart();
+                }
+            }
+        });
+        const container = this.el.shadowRoot?.querySelector('.scatter-plot-ID');
+        if (container) {
+            this.resizeObserver.observe(container);
+        }
+        else {
+            console.warn('Scatter plot container (.scatter-plot-ID) not found in shadow DOM for resize observer.');
+        }
     }
     drawChart() {
-        const margin = { top: 70, right: 40, bottom: 60, left: 175 };
+        const container = this.el.shadowRoot?.querySelector('.scatter-plot-ID');
+        if (container) {
+            container.innerHTML = '';
+        }
+        const isMobile = this.myWidth < 500;
+        const margin = {
+            top: isMobile ? 50 : 70,
+            right: 40,
+            bottom: isMobile ? 50 : 60,
+            left: isMobile ? 60 : 175
+        };
         const width = this.myWidth - margin.left - margin.right;
         const height = this.myHight - margin.top - margin.bottom;
-        select(this.el).select('#scatter-plot-ID').selectAll('*').remove();
-        const svg = select(this.el).select('#scatter-plot-ID')
+        const svg = select(this.el.shadowRoot?.querySelector('.scatter-plot-ID'))
             .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("viewBox", `0 0 ${this.myWidth} ${this.myHight + (isMobile ? 60 : 0)}`)
+            .attr("preserveAspectRatio", "xMidYMid meet")
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", `translate(${margin.left},${margin.top})`);
         svg.append("text")
             .attr("class", "chart-title")
             .attr("x", width / 2)
             .attr("y", -20)
             .style("text-anchor", "middle")
-            .style("font-size", "20px")
+            .style("font-size", isMobile ? '16px' : '20px')
             .text(this.nameOfSactter);
         const xScale = linear()
-            .domain([0, max(this.data, d => d.x) || 0])
+            .domain([0, max(this.data, d => d.x)])
             .range([0, width]);
         svg.append("g")
             .attr("class", "x-axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", `translate(0, ${height})`)
             .call(axisBottom(xScale).ticks(this.xTicks));
         const yScale = linear()
-            .domain([0, max(this.data, d => d.y) || 0])
+            .domain([0, max(this.data, d => d.y)])
             .range([height, 0]);
         svg.append("g")
             .attr("class", "y-axis")
             .call(axisLeft(yScale).ticks(this.yTicks));
         svg.append("g")
             .attr("class", "grid")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", `translate(0, ${height})`)
             .call(axisBottom(xScale).ticks(this.xTicks)
             .tickSize(-height).tickFormat(() => ""))
-            .selectAll("line")
-            .style("stroke", "#b00505")
-            .style("stroke-opacity", 0.1);
+            .selectAll("line");
         svg.append("g")
             .attr("class", "grid")
             .call(axisLeft(yScale).ticks(this.yTicks)
-            .tickSize(-width).tickFormat(() => ""))
-            .selectAll("line").style("stroke", "#b00505")
-            .style("stroke-opacity", 0.1);
-        svg.selectAll("dot")
+            .tickSize(-width).tickFormat(() => ""));
+        svg.selectAll("circle")
             .data(this.data).enter()
             .append("circle")
             .attr("cx", d => xScale(d.x))
             .attr("cy", d => yScale(d.y))
             .attr("r", 5)
-            .style("fill", (d) => {
-            if (d.type) {
-                return this.colorScale(d.type);
-            }
-            return this.colorOfPoint;
-        })
+            .style("fill", d => this.colorScale(d.type) || this.colorOfPoint)
             .style("opacity", 0.8)
             .style("stroke", "black")
-            .style("stroke-width", 1)
             .on("mouseover", (event, d) => {
             svg.selectAll("circle")
                 .transition()
@@ -151,44 +165,59 @@ const ScatterPlot = class {
         svg.append("text")
             .attr("class", "y-axis-label")
             .attr("x", -height / 2)
-            .attr("y", -175 + 20)
+            .attr("y", -40)
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "middle")
             .text(this.yTitle);
+        const legendX = isMobile ? 10 : width + 10;
         if (this.uniqueTypes.length > 1) {
             const legend = svg.append("g")
                 .attr("class", "legend")
-                .attr("transform", `translate(${width + 10}, 0)`);
-            const legendRectSize = 18;
-            const legendSpacing = 4;
-            const legendItems = legend.selectAll(".legend-item")
-                .data(this.uniqueTypes)
-                .enter()
-                .append("g")
-                .attr("class", "legend-item")
-                .attr("transform", (d, i) => `translate(0, ${i * (legendRectSize + legendSpacing)})`);
-            legendItems.append("rect")
-                .attr("width", legendRectSize)
-                .attr("height", legendRectSize)
-                .style("fill", d => this.colorScale(d))
-                .style("stroke", "black");
-            legendItems.append("text")
-                .attr("x", legendRectSize + legendSpacing)
-                .attr("y", legendRectSize - legendSpacing)
-                .text(d => d);
+                .attr("transform", `translate(${legendX}, 0)`);
+            const legendSize = isMobile ? 12 : 18;
+            this.uniqueTypes.forEach((type, i) => {
+                legend.append('rect')
+                    .attr('x', 0)
+                    .attr('y', i * (legendSize + 4))
+                    .attr('width', legendSize)
+                    .attr('height', legendSize)
+                    .attr('fill', this.colorScale(type));
+                legend.append('text')
+                    .attr('x', legendSize + 5)
+                    .attr('y', i * (legendSize + 4) + legendSize / 1.5)
+                    .text(type)
+                    .style('font-size', isMobile ? '10px' : '12px');
+            });
         }
+    }
+    onPropChange() {
+        this.prepareColorScale();
+        this.drawChart();
+    }
+    componentWillLoad() {
+        this.prepareColorScale();
     }
     componentDidLoad() {
         this.drawChart();
+        this.observeResize();
     }
-    componentShouldUpdate() {
-        this.drawChart();
+    disconnectedCallback() {
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
     }
     render() {
-        return (h("div", { key: 'd0e8c6050d1edda8b83c7b4653e10fffcdc5a433', id: "scatter-plot-ID" }));
+        return (h("div", { key: 'e4f828e275290ae258ffdaf671943f4f1910023b', class: "scatter-plot-ID" }));
     }
     static get watchers() { return {
-        "data": ["dataWatcher"]
+        "data": ["onPropChange"],
+        "myWidth": ["onPropChange"],
+        "myHight": ["onPropChange"],
+        "xTicks": ["onPropChange"],
+        "yTicks": ["onPropChange"],
+        "xTitle": ["onPropChange"],
+        "yTitle": ["onPropChange"],
+        "nameOfSactter": ["onPropChange"]
     }; }
 };
 ScatterPlot.style = scatterPlotCss;
