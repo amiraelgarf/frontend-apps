@@ -1,6 +1,6 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-CALO0PMU.js';
-import { B as BaseButton } from './base-button-Ch2hL2Ny.js';
-import { q as iconClear, r as iconSearch } from './index-mRJaR8gY.js';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { B as BaseButton } from './base-button-DqUGTErB.js';
+import { p as iconClear, q as iconSearch } from './index-BLniyGcy.js';
 import { m as makeRef } from './make-ref-bcj7UEIC.js';
 import { a as addDisposableEventListener } from './disposable-event-listener-CKoABG1h.js';
 import { b as a11yHostAttributes } from './a11y-Bb7pDeaQ.js';

@@ -1,5 +1,5 @@
-import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
-import { u as us } from './apexcharts.esm-DWm2rkNx.js';
+import { r as registerInstance, g as getElement, h } from './index-DcMv3VsE.js';
+import { g as gs } from './apexcharts.esm-CPxMffEF.js';
 
 const heatMapCss = ":host{display:block;width:100%;max-width:600px;margin:auto;font-family:Arial, sans-serif}.chart-container{width:100%;height:100%}";
 
@@ -49,11 +49,11 @@ const HeatmapChart = class {
                 text: 'Heatmap Chart',
             },
         };
-        const chart = new us(chartEl, options);
+        const chart = new gs(chartEl, options);
         chart.render();
     }
     render() {
-        return h("div", { key: '85476d910c2ccfd165acc9714c49afa646efb118', id: "heatmap", class: "chart-container" });
+        return (h("div", { key: '7e3be09a606159245de972b8d85afa9deb7c3922' }, h("ix-style-loader", { key: '9906e0dbf05916835f306ed71d370e02f66baf66' }), h("div", { key: '2d77d0b9d32e15df6c3ef68a21c6d2ca53f9efbb', id: "heatmap", class: "chart-container" })));
     }
 };
 HeatmapChart.style = heatMapCss;

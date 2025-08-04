@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host } from './index-DcMv3VsE.js';
 
 const modalLoadingCss = ":host{display:flex;justify-content:flex-start;align-items:center;gap:0.5rem;overflow:hidden}:host .loading-text{display:block;position:relative;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}";
 

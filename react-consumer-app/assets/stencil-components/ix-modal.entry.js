@@ -1,8 +1,8 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-CALO0PMU.js';
-import anime from 'animejs';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { a as anime } from './animejs-default-IiOAGYzC.js';
 import { b as a11yHostAttributes, a as a11yBoolean } from './a11y-Bb7pDeaQ.js';
 import { A as Animation } from './animation-Dp15M30K.js';
-import { O as OnListener } from './listener-BJBYzajV.js';
+import { O as OnListener } from './listener-lelW33TP.js';
 
 /*
  * SPDX-FileCopyrightText: 2024 Siemens AG

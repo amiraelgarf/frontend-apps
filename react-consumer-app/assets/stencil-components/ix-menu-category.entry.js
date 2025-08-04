@@ -1,8 +1,8 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-CALO0PMU.js';
-import anime from 'animejs';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { a as anime } from './animejs-default-IiOAGYzC.js';
 import { c as closestIxMenu } from './context-CKM5pVsv.js';
 import { c as createMutationObserver } from './mutation-observer-CX81WQtk.js';
-import { o as iconChevronDownSmall } from './index-mRJaR8gY.js';
+import { n as iconChevronDownSmall } from './index-BLniyGcy.js';
 import './typed-event-BdCnOrqW.js';
 
 /*

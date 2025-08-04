@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host } from './index-DcMv3VsE.js';
 
 const keyValueListCss = ":host(.keyValueList) ::slotted(ix-key-value){border-bottom:1px solid var(--theme-color-weak-bdr)}:host(.keyValueList.keyValueList--striped) ::slotted(ix-key-value:nth-child(odd)){background:var(--theme-color-ghost-alt)}";
 

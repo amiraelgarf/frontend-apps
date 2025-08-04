@@ -1,5 +1,5 @@
-import { r as registerInstance, c as createEvent, d as readTask, h, F as Fragment, H as Host, g as getElement } from './index-CALO0PMU.js';
-import { g as iconMoreMenu, d as iconApps } from './index-mRJaR8gY.js';
+import { r as registerInstance, c as createEvent, d as readTask, h, F as Fragment, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { g as iconMoreMenu, d as iconApps } from './index-BLniyGcy.js';
 import { s as showAppSwitch } from './index-DCtxcns0.js';
 import { a as applicationLayoutService } from './service-CjF89166.js';
 import { a as useContextConsumer, A as ApplicationLayoutContext } from './context-CKM5pVsv.js';

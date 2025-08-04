@@ -1,12 +1,12 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-CALO0PMU.js';
-import anime from 'animejs';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { a as anime } from './animejs-default-IiOAGYzC.js';
 import { s as showAppSwitch } from './index-DCtxcns0.js';
 import { a as useContextConsumer, A as ApplicationLayoutContext } from './context-CKM5pVsv.js';
 import { a as applicationLayoutService } from './service-CjF89166.js';
 import { m as menuController } from './menu-service-BMvtckRa.js';
 import { c as convertToRemString } from './rwd.util-Dm9ErdFR.js';
 import { t as themeSwitcher } from './theme-switcher-Cfdqn9An.js';
-import { P as iconNavigationLeft, Q as iconNavigationRight, d as iconApps, R as iconCogwheel, b as iconInfo, S as iconLightDark } from './index-mRJaR8gY.js';
+import { O as iconNavigationLeft, P as iconNavigationRight, d as iconApps, Q as iconCogwheel, b as iconInfo, R as iconLightDark } from './index-BLniyGcy.js';
 import './animation-Dp15M30K.js';
 import './modal-CsizKf_Q.js';
 import './typed-event-BdCnOrqW.js';

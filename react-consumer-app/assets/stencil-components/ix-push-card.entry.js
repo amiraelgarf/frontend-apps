@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host } from './index-DcMv3VsE.js';
 
 const pushCardCss = ":host{display:block;position:relative}:host ix-card{cursor:default}:host ix-card-accordion{cursor:pointer}:host .icon{height:2.5rem;width:2.5rem}:host .notification{font-size:40px}:host ix-card-content{height:11rem}";
 

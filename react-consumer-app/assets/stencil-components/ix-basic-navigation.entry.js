@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host, g as getElement } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
 import { u as useContextProvider, A as ApplicationLayoutContext } from './context-CKM5pVsv.js';
 import { a as applicationLayoutService } from './service-CjF89166.js';
 import { m as menuController } from './menu-service-BMvtckRa.js';

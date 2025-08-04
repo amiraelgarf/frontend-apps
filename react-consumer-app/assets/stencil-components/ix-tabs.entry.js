@@ -1,5 +1,5 @@
-import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-CALO0PMU.js';
-import { f as iconChevronRightSmall, C as iconChevronLeftSmall } from './index-mRJaR8gY.js';
+import { r as registerInstance, c as createEvent, h, H as Host, g as getElement } from './index-DcMv3VsE.js';
+import { f as iconChevronRightSmall, B as iconChevronLeftSmall } from './index-BLniyGcy.js';
 
 /*
  * SPDX-FileCopyrightText: 2023 Siemens AG

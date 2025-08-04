@@ -1,81 +1,37 @@
-import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
+import { r as registerInstance, g as getElement, h } from './index-DcMv3VsE.js';
 
-const rightClickMenuCss = ".context-menu{position:absolute;list-style-type:none;padding:5px;margin:0;width:250px;background-image:linear-gradient(to right top, #0b0b0b,#1f1f1f,#323232,#454545,#5a5a5a);color:white;box-shadow:0px 2px 2px 0px rgba(0,0,0,0.5), inset 0px -3px 6px -2px rgba(0,0,0,0.3)}.context-menu li{display:flex;align-items:center;padding:5px 10px;cursor:pointer;position:relative;transition:bakground-color 0.3 ease}.context-menu li:hover{background-color:#555}.context-menu li img{margin-right:10px;width:16px;height:16px}.submenu{display:none;position:absolute;top:0;left:250px;background-image:linear-gradient(to right top, #0b0b0b,#1f1f1f,#323232,#454545,#5a5a5a);padding:4px;list-style-type:none;width:150px;box-shadow:0px 2px 2px 0px rgba(0,0,0,0.5), inset 0px -3px 6px -2px rgba(0,0,0,0.3);color:white}.has-submenu::after{content:'▶';position:absolute;right:10px;font-size:12px;color:white}.has-submenu:hover .submenu{display:block}.menu-divider{border:none;border-top:1px solid lightgray;margin:5px 0;opacity:0.5}";
+const rightClickMenuCss = ".menu{position:fixed;background:white;border:1px solid #ccc;border-radius:6px;box-shadow:0 4px 8px rgba(0, 0, 0, 0.2);list-style:none;margin:0;padding:0.5rem 0;z-index:1000;min-width:180px}.menu li{display:flex;align-items:center;padding:0.5rem 1rem;cursor:pointer;gap:0.5rem;font-size:14px;transition:background 0.2s}.menu li:hover{background:#f1f1f1}.menu li.disabled{color:#aaa;cursor:not-allowed}.icon{width:1rem;text-align:center}";
 
 const RightClickMenu = class {
     constructor(hostRef) {
         registerInstance(this, hostRef);
     }
-    theItems = [];
-    menuVisible = false;
-    menuPosition = { x: 0, y: 0 };
-    adjustedPosition = { x: 0, y: 0 };
-    submenuAdjustedPositionX = 250;
-    get hostElement() { return getElement(this); }
-    menuElementRef;
-    componentDidLoad() {
-        this.hostElement.addEventListener('contextmenu', this.handleRightClick.bind(this));
-        document.addEventListener('click', this.handleClickOutside.bind(this));
+    get el() { return getElement(this); }
+    items = [];
+    visible = false;
+    pos = { x: 0, y: 0 };
+    onContextMenu(event) {
+        event.preventDefault();
+        this.visible = true;
+        this.pos = { x: event.clientX, y: event.clientY };
     }
-    disconnectedCallback() {
-        this.hostElement.removeEventListener('contextmenu', this.handleRightClick.bind(this));
-        document.removeEventListener('click', this.handleClickOutside.bind(this));
+    onClick() {
+        this.visible = false;
     }
-    adjustMenuPosition() {
-        if (this.menuVisible && this.menuElementRef) {
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            const menuWidth = 260;
-            const menuHeight = this.menuElementRef.offsetHeight;
-            let xPos = this.menuPosition.x;
-            let yPos = this.menuPosition.y;
-            if (xPos + menuWidth > viewportWidth) {
-                xPos = viewportWidth - menuWidth;
-            }
-            if (yPos + menuHeight > viewportHeight) {
-                yPos = viewportHeight - menuHeight;
-            }
-            this.adjustedPosition = { x: xPos, y: yPos };
-            const submenuWidth = 150;
-            this.submenuAdjustedPositionX = (xPos + menuWidth + submenuWidth > viewportWidth) ? -150 : menuWidth;
+    onItemClick(item) {
+        if (item.enabled) {
+            const customEvent = new CustomEvent('menuSelect', {
+                detail: item,
+                bubbles: true,
+                composed: true,
+            });
+            this.el.dispatchEvent(customEvent);
         }
-    }
-    handleRightClick(e) {
-        e.preventDefault();
-        this.menuPosition = { x: e.clientX, y: e.clientY };
-        this.menuVisible = true;
-    }
-    handleClickOutside(e) {
-        if (this.menuVisible
-            && this.menuElementRef
-            && !this.menuElementRef.contains(e.target)) {
-            this.menuVisible = false;
-        }
-    }
-    renderTheMenu(item) {
-        if (item.isDivisor) {
-            return (h("hr", { class: "menu-divider" }));
-        }
-        return (h("li", { id: item.idItem, class: { 'has-submenu': item.hasChildren }, onClick: () => {
-                if (item.functionality) {
-                    item.functionality();
-                }
-                this.menuVisible = false;
-            } }, item.iconImage && (h("img", { src: item.iconImage, alt: item.iconImage || 'icon' })), item.textData, item.hasChildren && (h("ul", { class: "submenu", style: {
-                top: '0px',
-                left: `${this.submenuAdjustedPositionX}px`,
-            } }, item.children.map(child => this.renderTheMenu(child))))));
+        this.visible = false;
     }
     render() {
-        return (h("div", { key: '323a3e1458c7d5ede4bf97d2cf0a175f9757e675', style: { height: '100vh', width: '100vw', overflow: 'hidden', position: 'relative' } }, h("slot", { key: '3a2177a771d82f555ee0ae41b6cde600c0add1b4' }), this.menuVisible && (h("ul", { key: 'fedfaaa3014d411cbf5994e8a2023b1b9ccf4976', ref: (el) => this.menuElementRef = el, class: "context-menu", style: {
-                top: `${this.adjustedPosition.y}px`,
-                left: `${this.adjustedPosition.x}px`
-            } }, this.theItems.map(i => this.renderTheMenu(i))))));
+        return (h("div", { key: 'b0e9b025f5f7519174be71143c5c57bbfdc2bd51' }, h("ix-style-loader", { key: '7610676a948f6a9d8361fe1878ad774519918cbd' }), this.visible && (h("ul", { key: '1ef2891d218e7e3cc0714959775ae5a2a7d661b1', class: "menu", style: { top: `${this.pos.y}px`, left: `${this.pos.x}px` } }, this.items.map((item) => (h("li", { class: { disabled: !item.enabled }, onClick: () => this.onItemClick(item) }, h("span", { class: "icon" }, item.icon), h("span", null, item.name)))))), h("slot", { key: '9b683e97b998cba1693b286de360c5d5a8185957' })));
     }
-    static get watchers() { return {
-        "menuVisible": ["adjustMenuPosition"],
-        "menuPosition": ["adjustMenuPosition"]
-    }; }
 };
 RightClickMenu.style = rightClickMenuCss;
 

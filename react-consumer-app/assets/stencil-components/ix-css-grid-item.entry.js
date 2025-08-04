@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host } from './index-DcMv3VsE.js';
 
 const cssGridItemCss = ":host{display:block;position:relative}:host ::slotted(*){height:100%;width:100%}";
 

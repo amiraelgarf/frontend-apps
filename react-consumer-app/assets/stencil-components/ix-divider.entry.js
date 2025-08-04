@@ -1,4 +1,4 @@
-import { r as registerInstance, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host } from './index-DcMv3VsE.js';
 
 const dividerCss = ":host{display:block;position:relative;width:100%;border-bottom:0.0625rem solid var(--theme-color-x-weak-bdr);margin:0.25rem 0px}";
 

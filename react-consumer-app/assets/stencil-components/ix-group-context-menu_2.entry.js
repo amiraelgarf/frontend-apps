@@ -1,6 +1,6 @@
-import { r as registerInstance, h, H as Host, g as getElement, c as createEvent } from './index-CALO0PMU.js';
+import { r as registerInstance, h, H as Host, g as getElement, c as createEvent } from './index-DcMv3VsE.js';
 import { g as getSlottedElements } from './shadow-dom-i60z1FJC.js';
-import { v as iconContextMenu } from './index-mRJaR8gY.js';
+import { u as iconContextMenu } from './index-BLniyGcy.js';
 
 const groupContextMenuCss = ":host{display:block;position:relative;height:2rem;width:2rem;margin-block-start:0.3125rem;margin-inline-end:0.3125rem;margin-inline-start:auto}:host .hide{visibility:collapse}:host ::slotted(ix-dropdown){cursor:default}";
 

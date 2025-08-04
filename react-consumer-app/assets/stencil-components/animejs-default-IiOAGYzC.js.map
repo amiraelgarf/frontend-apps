@@ -1,0 +1,1 @@
+{"version":3,"file":"animejs-default-IiOAGYzC.js","sources":["src/shims/animejs-default.js"],"sourcesContent":["import * as anime from 'animejs';\r\nexport default anime.default || anime;\r\n"],"names":["anime.default","anime"],"mappings":";;;;;AACA,YAAeA,KAAa,IAAIC,OAAK;;;;"}

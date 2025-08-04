@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, H as Host } from './index-CALO0PMU.js';
+import { r as registerInstance, c as createEvent, h, H as Host } from './index-DcMv3VsE.js';
 
 const menuAboutItemCss = ":host{display:block}";
 

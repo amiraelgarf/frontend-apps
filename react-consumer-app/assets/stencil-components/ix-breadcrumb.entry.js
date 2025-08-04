@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h, f as forceUpdate, H as Host, g as getElement } from './index-CALO0PMU.js';
+import { r as registerInstance, c as createEvent, h, f as forceUpdate, H as Host, g as getElement } from './index-DcMv3VsE.js';
 import { b as a11yHostAttributes, a as a11yBoolean } from './a11y-Bb7pDeaQ.js';
 import { c as createMutationObserver } from './mutation-observer-CX81WQtk.js';
 import { m as makeRef } from './make-ref-bcj7UEIC.js';

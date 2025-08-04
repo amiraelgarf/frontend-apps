@@ -1,4 +1,4 @@
-import { r as registerInstance, c as createEvent, h } from './index-CALO0PMU.js';
+import { r as registerInstance, c as createEvent, h } from './index-DcMv3VsE.js';
 
 const textAreaCss = ":host{display:block;font-family:'Inter', sans-serif}textarea{width:100%;padding:0.75rem;font-size:1rem;border:1px solid #472626;border-radius:6px;resize:vertical;background-color:#6c4949;color:#333;font-family:inherit;transition:border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out}textarea:focus{border-color:#007bff;box-shadow:0 0 0 3px rgba(0, 123, 255, 0.1);outline:none}";
 
@@ -23,12 +23,12 @@ const TextArea = class {
         this.valueChange.emit(input.value);
     };
     render() {
-        return (h("textarea", { key: '8d23e9b5e329b13b50a1cd16a7467f5c20d6d5e8', onInput: this.handleInput, ref: (el) => {
+        return (h(h.Fragment, null, h("ix-style-loader", { key: 'f95d94a8b382e1ce5d7e257f79c0298209b1655b' }), h("textarea", { key: 'b4ffb9443fd4498c29efca6ec0c90c1fbb0ded79', onInput: this.handleInput, ref: (el) => {
                 if (el) {
                     el.placeholder = this.placeholder;
                     el.value = this.internalValue;
                 }
-            } }));
+            } })));
     }
     static get watchers() { return {
         "value": ["valueChanged"]

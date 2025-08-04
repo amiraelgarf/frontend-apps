@@ -1,6 +1,6 @@
-import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
-import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
-import { t as tickIncrement, c as ticks, d as bisectRight, l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-BVOXtTB4.js';
+import { r as registerInstance, g as getElement, h } from './index-DcMv3VsE.js';
+import { s as select, o as ordinal } from './transform-CguFiH21.js';
+import { t as tickIncrement, c as ticks, d as bisectRight, l as linear, m as max, a as axisBottom, b as axisLeft } from './linear-B0BXeej7.js';
 
 function count(values, valueof) {
   let count = 0;
@@ -194,7 +194,7 @@ function bin() {
   return histogram;
 }
 
-const histogramChartCss = ":host{display:block;width:100%;height:100%;font-family:'Inter', sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#333;}.histogramChart{display:flex;justify-content:center;align-items:center;width:100%;height:100%;background-color:#f8f9fa;border-radius:12px;box-shadow:0 4px 12px rgba(0, 0, 0, 0.1);overflow:hidden;}.histogramChart svg{display:block;margin:auto;background-color:#ffffff;border-radius:10px;}.chart-title{font-size:24px;font-weight:600;fill:#202124;}rect{transition:all 0.3s ease-in-out;}rect:hover{opacity:0.9 !important;transform:translateY(-2px);box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);}.domain{stroke:#aaa;stroke-width:1px}.tick line{stroke:#ccc;stroke-width:0.5px}.tick text{font-size:11px;fill:#555;}.axis-label{font-size:14px;font-weight:500;fill:#333}.legend{font-size:12px;fill:#555}.legend rect{stroke:#ccc;stroke-width:0.5px}.legend text{fill:#333}text{font-family:'Inter', sans-serif}rect.bar-s1,rect.bar-s2{cursor:pointer}.info-text{fill:#666;font-style:italic}.bar-s1,.bar-s2{cursor:pointer;transition:opacity 0.2s ease}";
+const histogramChartCss = ":host{position:relative;display:block;width:100%;height:100%;max-width:100%;font-family:'Inter', sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:var(--theme-color-std-text);}@media (max-width: 600px){histogram-chart{height:300px}}.histogramChart{display:flex;justify-content:center;align-items:center;width:100%;max-width:800px;height:400px;margin:0 auto;position:relative;border-radius:12px;box-shadow:0 4px 12px rgba(0, 0, 0, 0.1);overflow:hidden;}.histogramChart svg{display:block;margin:auto;border-radius:10px;}.chart-title{font-size:24px;font-weight:600;fill:var(--theme-color-std-text);}rect{transition:all 0.3s ease-in-out;}rect:hover{opacity:0.9 !important;transform:translateY(-2px);box-shadow:0 2px 5px rgba(0, 0, 0, 0.2);}.domain{stroke:var(--theme-chart-axes);stroke-width:1px}.tick line{stroke:var(--theme-chart-ticks);stroke-width:0.5px}.tick text{font-size:11px;fill:var(--theme-color-std-text);}.axis-label{font-size:14px;font-weight:500;fill:var(--theme-color-std-text)}.legend{font-size:12px;fill:var(--theme-color-std-text)}.legend rect{stroke:#ccc;stroke-width:0.5px}.legend text{fill:var(--theme-color-std-text)}text{font-family:'Inter', sans-serif}rect.bar-s1,rect.bar-s2{cursor:pointer}.info-text{fill:var(--theme-color-std-text);font-style:italic}.bar-s1,.bar-s2{cursor:pointer;transition:opacity 0.2s ease}";
 
 const HistogramChart = class {
     constructor(hostRef) {
@@ -204,31 +204,30 @@ const HistogramChart = class {
     myWidth = 800;
     myHight = 500;
     nameOfChart = "Grade in 1st Semester vs 2nd Semester";
-    binCount = 10;
+    binCount = 20;
     data = [];
-    activeSemester = null;
-    infoTextSelection = null;
+    resizeObserver;
     renderHistogram() {
-        const margin = { top: 70, right: 40, bottom: 60, left: 175 };
+        const isMobile = this.myWidth < 500;
+        const margin = {
+            top: isMobile ? 50 : 70,
+            right: 40,
+            bottom: isMobile ? 50 : 60,
+            left: isMobile ? 60 : 175
+        };
         const width = this.myWidth - margin.left - margin.right;
-        const height = this.myHight - margin.top - margin.bottom;
+        const legendPadding = isMobile ? 60 : 0;
+        const height = this.myHight - margin.top - margin.bottom - legendPadding;
         const container = this.el.shadowRoot?.querySelector('.histogramChart');
         if (container) {
             container.innerHTML = '';
         }
         const svg = select(this.el.shadowRoot?.querySelector('.histogramChart'))
             .append('svg')
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("viewBox", `0 0 ${this.myWidth} ${this.myHight + (isMobile ? 60 : 0)}`)
+            .attr("preserveAspectRatio", "xMidYMid meet")
             .append('g')
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        svg.append("text")
-            .attr("class", "chart-title")
-            .attr("x", width / 2)
-            .attr("y", -20)
-            .style("text-anchor", "middle")
-            .style("font-size", "20px")
-            .text(this.nameOfChart);
         const allGrade = [...this.data.map(d => d.semester1), ...this.data.map(d => d.semester2)]
             .filter((grade) => grade !== undefined && grade !== null);
         const x = linear()
@@ -248,56 +247,76 @@ const HistogramChart = class {
         const color = ordinal()
             .domain(["semester1", "semester2"])
             .range(["#1f77b4", "#ff7f0e"]);
+        const getBinX = (d) => x(d.x0 ?? 0);
+        const getBinWidth = (d) => x(d.x1 ?? 0) - x(d.x0 ?? 0);
+        const barWidth = (d) => getBinWidth(d) / 2;
         svg.selectAll(".semester1")
             .data(semester1Bins)
             .enter().append("rect")
             .attr("class", "bar-s1")
-            .attr("x", d => x(d.x0 ?? 0) + 1)
             .attr("y", d => y(d.length ?? 0))
-            .attr("width", d => {
-            const x0 = d.x0 ?? 0;
-            const x1 = d.x1 ?? x0 + 1;
-            return Math.max(0, x(x1) - x(x0) - 1);
-        })
+            .attr("x", d => getBinX(d) + getBinWidth(d) / 4 - barWidth(d) / 2)
+            .attr("width", d => barWidth(d))
             .attr("height", d => height - y(d.length ?? 0))
             .attr("fill", () => color("semester1"))
             .attr("rx", 5)
             .attr("ry", 5)
-            .attr("opacity", 0.7);
+            .attr("opacity", 0.7)
+            .on("mouseover", function () {
+            select(this).attr("opacity", 1);
+        })
+            .on("mouseout", function () {
+            select(this).attr("opacity", 0.7);
+        });
         svg.selectAll(".semester2")
             .data(semester2Bins)
             .enter().append("rect")
             .attr("class", "bar-s2")
-            .attr("x", d => x(d.x0 ?? 0) + 1)
             .attr("y", d => y(d.length ?? 0))
-            .attr("width", d => {
-            const x0 = d.x0 ?? 0;
-            const x1 = d.x1 ?? x0 + 1;
-            return Math.max(0, x(x1) - x(x0) - 1);
-        })
+            .attr("x", d => getBinX(d) + getBinWidth(d) / 4 + barWidth(d) / 2)
+            .attr("width", d => barWidth(d))
             .attr("height", d => height - y(d.length ?? 0))
             .attr("fill", () => color("semester2"))
             .attr("rx", 5)
             .attr("ry", 5)
-            .attr("opacity", 0.7);
-        svg.append("g")
+            .attr("opacity", 0.7)
+            .on("mouseover", function () {
+            select(this).attr("opacity", 1);
+        })
+            .on("mouseout", function () {
+            select(this).attr("opacity", 0.7);
+        });
+        const xAxisGroup = svg.append("g")
             .attr("transform", `translate(0,${height})`)
-            .call(axisBottom(x))
-            .append("text")
+            .call(axisBottom(x).ticks(this.binCount));
+        xAxisGroup.append("text")
             .attr("x", width / 2)
             .attr("y", 35)
-            .attr("fill", "#000")
+            .attr("fill", "var(--theme-color-std-text)")
+            .style("text-anchor", "middle")
             .text("Grade Ranges");
+        xAxisGroup.selectAll("text")
+            .style("font-size", isMobile ? "10px" : "12px");
         svg.append("g")
             .call(axisLeft(y))
             .append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", -40)
             .attr("x", -height / 2)
-            .attr("fill", "#000")
+            .attr("fill", "var(--theme-color-std-text)")
             .text("Number of Students");
+        const titleFontSize = isMobile ? "16px" : "20px";
+        svg.append("text")
+            .attr("class", "chart-title")
+            .attr("x", width / 2)
+            .attr("y", -20)
+            .style("text-anchor", "middle")
+            .style("font-size", titleFontSize)
+            .text(this.nameOfChart);
+        const legendX = isMobile ? 10 : width - 100;
+        const legendY = isMobile ? height + 40 : -50;
         const legend = svg.append("g")
-            .attr("transform", `translate(${width - 100}, 20)`);
+            .attr("transform", `translate(${legendX}, ${legendY})`);
         legend.append("rect")
             .attr("x", 0)
             .attr("width", 18)
@@ -308,7 +327,8 @@ const HistogramChart = class {
             .attr("x", 25)
             .attr("y", 9)
             .attr("dy", "0.35em")
-            .text("Semester 1");
+            .text("Semester 1")
+            .attr("fill", "var(--theme-color-std-text)");
         legend.append("rect")
             .attr("x", 0)
             .attr("y", 25)
@@ -320,19 +340,48 @@ const HistogramChart = class {
             .attr("x", 25)
             .attr("y", 34)
             .attr("dy", "0.35em")
-            .text("Semester 2");
+            .text("Semester 2")
+            .attr("fill", "var(--theme-color-std-text)");
+        legend.selectAll("rect")
+            .on("mouseover", (event, d) => {
+            const semester = event.target?.nextSibling?.textContent?.includes("1") ? "bar-s1" : "bar-s2";
+            svg.selectAll(`.${semester}`).attr("opacity", 1);
+        })
+            .on("mouseout", () => {
+            svg.selectAll(".bar-s1").attr("opacity", 0.7);
+            svg.selectAll(".bar-s2").attr("opacity", 0.7);
+        });
     }
     OnPropChange() {
         this.renderHistogram();
     }
+    observeResize() {
+        this.resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                const { width, height } = entry.contentRect;
+                if (Math.abs(this.myWidth - width) > 1 || Math.abs(this.myHight - height) > 1) {
+                    this.myWidth = width;
+                    this.myHight = height;
+                    this.renderHistogram();
+                }
+            }
+        });
+        const container = this.el.shadowRoot?.querySelector('.histogramChart');
+        if (container) {
+            this.resizeObserver.observe(container);
+        }
+    }
     componentDidLoad() {
         this.renderHistogram();
+        this.observeResize();
     }
-    componentDidUpdate() {
-        this.renderHistogram();
+    disconnectedCallback() {
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+        }
     }
     render() {
-        return (h("div", { key: '567c3d73193e8f78b8b32cd3e84f50a9ac388860', class: "histogramChart" }));
+        return (h("div", { key: 'fb5c16d4e7bbe4b4d34fa569895f29c0f035d2ad' }, h("ix-style-loader", { key: 'aea30e1e39239e76291b34beaa15b37c9b6f01b2' }), h("div", { key: '9eff77743dfd00e52606bfc35043b8877e489acc', class: "histogramChart" })));
     }
     static get watchers() { return {
         "myWidth": ["OnPropChange"],

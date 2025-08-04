@@ -1,5 +1,5 @@
-import { r as registerInstance, g as getElement, h } from './index-CALO0PMU.js';
-import { s as select, o as ordinal } from './transform-AkiUVwtn.js';
+import { r as registerInstance, g as getElement, h } from './index-DcMv3VsE.js';
+import { s as select, o as ordinal } from './transform-CguFiH21.js';
 import { c as colors } from './colors-CJG58WzC.js';
 
 const pi$1 = Math.PI,
@@ -615,7 +615,7 @@ const PieChart = class {
             .text((d) => d.data.label);
     }
     render() {
-        return (h(h.Fragment, null, h("svg", { key: 'eaf7e5923cb7a3b89e92212bddc5ee72bc3f03b4', id: "pie-chart" }), h("div", { key: 'ab309e0096a638e42fb53898cd8f80e5ec6bceb8', class: "tooltip", style: { position: 'absolute' } })));
+        return (h(h.Fragment, null, h("ix-style-loader", { key: '69ba916d05a2cd82431150900a355698a26a5804' }), h("svg", { key: '0d4b3f474ad0110be78d9984ea8044bc5ec0e104', id: "pie-chart" }), h("div", { key: '7ac1c7618a2589e7b1e7f02e5215396ad4f7a143', class: "tooltip", style: { position: 'absolute' } })));
     }
 };
 PieChart.style = pieChartCss;
